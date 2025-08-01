@@ -1,0 +1,122 @@
+{% set paragraph_parent = paragraph.getParentEntity() %}
+{% set parent = paragraph_parent.type.value[0].target_id %}
+{% if parent == "pricing_style_1" %}
+    {% if "On" in content.field_check[0] %}
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="item recommended">
+                <div class="content-wrapper">
+                    <div class="content">
+                        <h4>{{content.field_title.0}}</h4>
+                        <span>{{content.field_tagline.0}}</span>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">{{content.field_text_format.0}}{{content.field_text_1.0}}</span>
+                        <span>{{content.field_text_2.0}}</span>
+                    </div>
+                </div>
+                <hr>
+                <ul>
+                    {% for key,value in content.field_widget['#items'] %}
+                        {{content.field_widget[key]}}
+                    {% endfor %}
+                </ul>
+                <a href="{{content.field_link.0['#url']}}" class="btn btn-outline-secondary btn-style-3" title="{{content.field_link.0['#title']}}">{{content.field_link.0['#title']}}</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="item">
+                <div class="content-wrapper">
+                    <div class="content">
+                        <h4>{{content.field_title.0}}</h4>
+                        <span>{{content.field_tagline.0}}</span>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">{{content.field_text_format.0}}{{content.field_text_1.0}}</span>
+                        <span>{{content.field_text_2.0}}</span>
+                    </div>
+                </div>
+                <hr>
+                <ul>
+                    {% for key,value in content.field_widget['#items'] %}
+                        {{content.field_widget[key]}}
+                    {% endfor %}
+                </ul>
+                <a href="{{content.field_link.0['#url']}}" class="btn btn-outline-secondary btn-style-3" title="{{content.field_link.0['#title']}}">{{content.field_link.0['#title']}}</a>
+            </div>
+        </div>
+    {% endif %}
+{% elseif parent == "pricing_style_2" %}
+    {% if "On" in content.field_check[0] %}
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="item recommended">
+                <div class="recommended-label">
+                    <span>{{content.field_text.0}}</span>
+                </div>
+                <h4>{{content.field_title.0}}</h4>
+                <p>{{content.field_tagline.0}}</p>
+                <span class="price"><sup>{{content.field_text_format.0}}</sup>{{content.field_text_1.0}}</span>
+                <span>{{content.field_text_2.0}}</span>
+                <ul>
+                    {% for key,value in content.field_widget['#items'] %}
+                        {{content.field_widget[key]}}
+                    {% endfor %}
+                </ul>
+                <a href="{{content.field_link.0['#url']}}" class="btn btn-outline-secondary btn-style-3" title="{{content.field_link.0['#title']}}">{{content.field_link.0['#title']}}</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="item">
+                <h4>{{content.field_title.0}}</h4>
+                <p>{{content.field_tagline.0}}</p>
+                <span class="price"><sup>{{content.field_text_format.0}}</sup>{{content.field_text_1.0}}</span>
+                <span>{{content.field_text_2.0}}</span>
+                <ul>
+                    {% for key,value in content.field_widget['#items'] %}
+                        {{content.field_widget[key]}}
+                    {% endfor %}
+                </ul>
+            <a href="{{content.field_link.0['#url']}}" class="btn btn-outline-secondary btn-style-3" title="{{content.field_link.0['#title']}}">{{content.field_link.0['#title']}}</a>
+            </div>
+        </div>
+    {% endif %}
+{% elseif parent == "pricing_style_3" %}
+    {% if "On" in content.field_check[0] %}
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="item recommended">
+                <h4>Standard Plan</h4>
+                <span>Most Recommended</span>
+                <span class="price">$199</span>
+                <span>Monthly</span>
+                <ul>
+                <li>Lorem ipsum dolor sit amet</li>
+                    <li>Consectetur adipiscing</li>
+                    <li>Sed ut perspiciatis und omnis</li>
+                    <li>Nemo enim ipsam voluptate</li>
+                    <li class="strike-out">Lorem ipsum dolor sit</li>
+                    <li>Nam libero tempore cumsolut</li>
+                </ul>
+                  <a href="{{content.field_link.0['#url']}}" class="btn btn-outline-secondary btn-style-3" title="{{content.field_link.0['#title']}}">{{content.field_link.0['#title']}}</a>
+            </div>
+        </div>
+    {% else %}
+        <div class="col-lg-4 col-md-6 col-12">
+            <div class="item">
+                <h4>Basic Plan</h4>
+                <span>Most Popular</span>
+                <span class="price">$99</span>
+                <span>Monthly</span>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet</li>
+                    <li>Consectetur adipiscing</li>
+                    <li>Sed ut perspiciatis und omnis</li>
+                    <li class="strike-out">Nemo enim ipsam voluptate</li>
+                    <li class="strike-out">Lorem ipsum dolor sit</li>
+                    <li>Nam libero tempore cumsolut</li>
+                </ul>
+                  <a href="{{content.field_link.0['#url']}}" class="btn btn-outline-secondary btn-style-3" title="{{content.field_link.0['#title']}}">{{content.field_link.0['#title']}}</a>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}

@@ -1,0 +1,17 @@
+<section class="clients-home-style-1 dt-section">
+    <div class="container">
+        <div class="title-1">
+            <span>{{content.field_tagline.0}}</span>
+            <h2>{{content.field_title.0}}</h2>
+        </div>
+        <div class="row">
+            {% for key, value in content.field_images['#items'] %}
+            <div class="col-lg-3">
+                <div class="client-image">
+                    <img src="{{file_url(content.field_images['#items'][key].entity.uri.value)}}" alt="{{content.field_images['#items'][key].alt}}">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

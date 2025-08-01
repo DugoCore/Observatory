@@ -1,0 +1,18 @@
+<section class="about-company dt-section">
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="image">
+                <img src="{{file_url(content.field_image['#items'].entity.uri.value)}}" alt="{{content.field_image['#items'].alt}}">
+            </div>
+            <div class="about-us-1 content">
+                {{content.field_formatted_description.0}}
+                <div class="features">
+                    {{content.field_widget}}           
+                </div>
+            </div>  
+            <div class="bottom-content">
+                {{content.field_formatted_description_2.0}}
+            </div>
+        </div>
+    </div>
+</section>

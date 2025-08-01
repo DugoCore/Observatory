@@ -1,0 +1,13 @@
+{% set paragraph_parent = paragraph.getParentEntity() %}
+{% set parent = paragraph_parent.type.value[0].target_id %}
+{% if 'On' in content.field_check[0] %}
+    <li class="strike-out">{{content.field_title.0}}<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+        <path data-name="Path 39313" d="M102,2A100,100,0,1,0,202,102,100,100,0,0,0,102,2Zm32.1,117.9a10.041,10.041,0,1,1-14.2,14.2l-17.9-18-17.9,18a10.041,10.041,0,1,1-14.2-14.2l18-17.9-18-17.9A10.041,10.041,0,0,1,84.1,69.9l17.9,18,17.9-18a10.041,10.041,0,1,1,14.2,14.2l-18,17.9Z" transform="translate(-2 -2)"></path>
+    </svg>
+    </li> 
+{% else %}
+    <li>{{content.field_title.0}}<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">
+        <path  data-name="Path 40677" d="M181.96,36.961a75,75,0,1,0,75,75A74.932,74.932,0,0,0,181.96,36.961Zm36.29,59.447-44.413,44.24A6.822,6.822,0,0,1,169,142.721a6.536,6.536,0,0,1-4.839-2.073l-21.947-21.775a6.966,6.966,0,0,1,9.851-9.851L169,125.957l39.4-39.4a6.886,6.886,0,0,1,9.851,0,7.213,7.213,0,0,1,0,9.852Z" transform="translate(-106.96 -36.961)" fill="#181c31"/>
+        </svg>
+    </li>
+{% endif %}

@@ -1,0 +1,12 @@
+<div class="additional-content">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            {{content.field_formatted_description.0}}            
+        </div>
+        <div class="col-lg-6 col-12">
+            {% if content.field_image['#items'] %}
+                <img src="{{file_url(content.field_image['#items'].entity.uri.value)}}" alt="{{content.field_image['#items'].alt}}">
+            {% endif %}
+        </div>
+    </div>
+</div>

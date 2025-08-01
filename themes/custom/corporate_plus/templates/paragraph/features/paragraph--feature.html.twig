@@ -1,0 +1,40 @@
+{% set paragraph_parent = paragraph.getParentEntity() %}
+{% set parent = paragraph_parent.type.value[0].target_id %}
+{% if parent == "about_style_1" %}
+     <div class="feature">
+        <div class="icon">
+            {{content.field_svg_icon.0}}
+        </div>
+        <div class="feature-content">
+            <h4>{{content.field_title.0}}</h4>
+            <p>{{content.field_description.0}}</p>
+        </div>
+    </div>
+{% elseif parent == "why_choose_us_style_1" %}
+    <div class="feature-content">
+        <h4>{{content.field_title.0}}</h4>
+        <p>{{content.field_description.0}}</p>
+    </div>
+{% elseif parent == "why_choose_us_style_2" %}
+    <div class="col-lg-4">
+        <div class="item">
+            <div class="icon">
+                {{content.field_svg_icon.0}}
+            </div>
+            <div class="feature-content">
+                <h4>{{content.field_title.0}}</h4>
+                <p>{{content.field_description.0}}</p>
+            </div>
+        </div>
+    </div>
+{% elseif parent == "about_company" %}
+    <div class="feature">
+        <div class="icon">
+            {{content.field_svg_icon.0}}
+        </div>
+        <div class="feature-content">
+            <h3>{{content.field_title.0}}</h3>
+            <p>{{content.field_description.0}}</p>
+        </div>
+    </div>
+{% endif %}

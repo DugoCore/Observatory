@@ -1,0 +1,22 @@
+{% if rows[0].content['#node'].type.value[0].target_id == "blog" %}
+<section class="blog-2-column dt-section">
+    <div class="blog-style-1">
+        <div class="container">
+            <div class="row s-25">
+                 {% for row in rows %}
+                    {{ row.content }}
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+</section>
+{% elseif rows[0].content['#node'].type.value[0].target_id == "project" %}
+<section class="projects-list-full-width projects-lists dt-section">
+    <div class="container">
+        {% for row in rows %}
+            {{ row.content }}
+        {% endfor %} 
+    </div>
+</section>
+{% endif %}
+    

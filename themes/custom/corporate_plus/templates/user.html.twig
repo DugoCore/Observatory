@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Theme override to present all user data.
+ *
+ * This template is used when viewing a registered user's page,
+ * e.g., example.com/user/123. 123 being the user's ID.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.field_example'. Fields attached to a user
+ *   such as 'user_picture' are available as 'content.user_picture'.
+ * - attributes: HTML attributes for the container element.
+ * - user: A Drupal User entity.
+ *
+ * @see template_preprocess_user()
+ */
+#}
+{% set base_url = url('<front>') %}
+<section class="page-banner bg-image dt-section" style="background-image:linear-gradient(rgba(27, 31, 41, 0.72), rgba(27, 31, 41, 0.72)) , url('{{base_url}}/sites/default/files/default_images/Subpage-Header.jpeg');">
+    <div class="container social-wrapper">
+        <div class="heading">
+        </div>
+    </div>
+</section>
+<article{{ attributes }}>
+  {% if content %}
+  <div class="user-welcomme-page dt-section">
+    <div class="container">
+      <div class="welcome-greetings">
+        <h1>Welcome back "{{ user.name.0.value }}"</h1>
+        {{- content -}}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</article>

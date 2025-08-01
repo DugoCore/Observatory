@@ -1,0 +1,74 @@
+<section class="blog-details dt-section">
+    <div class="container">
+        <div class="row s-15">
+            {% if content.field_images[1] %}
+                {% for key,value in content.field_images['#items'] %}
+                    <div class="col-md-6 col-12">
+                        <img src="{{file_url(content.field_images['#items'][key].entity.uri.value)}}" alt="{{content.field_images['#items'][key].alt}}" />
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="full-image">
+                    <img src="{{file_url(content.field_images['#items'].entity.uri.value)}}" alt="{{content.field_images['#items'].alt}}" />
+                </div>
+            {% endif %}
+        </div>
+        <div class="whole-content-wrapper">
+            <div class="whole-content">
+                <div class="content-details">
+                    <div class="owner-name-time">
+                        <span>{{'By'|t}} <span>{{node.Owner.name.value}}</span></span>
+                        <span>{{node.getCreatedTime|format_date('custom','F d, Y')}}</span>
+                    </div>
+                    <div class="addtoany-social-icons">
+                        {{drupal_block('addtoany_block')}}
+                    </div>
+                </div>
+                <div class="content">
+                    {{content.body.0}}
+                    <div class="comment-tags">
+                        {% if comment_count == 0 %}
+                        <span>{{"You are the first one to Comment"| t}}</span>
+                        {% elseif comment_count == '1' %}
+                        <span>{{comment_count}} {{"Comment"| t}}</span>
+                        {% else %}
+                        <span>{{comment_count}} {{"Comments"| t}}</span>
+                        {% endif %}
+                        <div class="tags">
+                            {% for key,value in content.field_tags['#items'] %}
+                            <span><a href="{{content.field_tags[key]['#url']}}" title="{{content.field_tags[key]['#title']}}">{{content.field_tags[key]['#title']}}</a></span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pagination -->
+            <div class="details-page-nav">
+                <ul>
+                    <li>
+                        <a href="{{prev_url}}" title="{{prev_label}}">
+                            <img src="{{prev_image_url}}" alt="{{prev_label}}">
+                            <div class="prev-blog">
+                                <h6>{{prev_label|slice(0,50) ~ ' ...'}}</h6>
+                                <span>{{prev_date}}</span>
+                            </div>
+                        </a>
+                    </li> 
+                    <li>
+                        <a href="{{next_url}}" title="{{next_label}}">
+                            <div class="next-blog">
+                                <h6>{{next_label|slice(0,50) ~ ' ...'}}</h6> 
+                                <span>{{next_date}}</span>
+                            </div>
+                            <img src="{{next_image_url}}" alt="{{next_label}}">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="blog-comments">
+                <h2>Comments</h2>
+                {{content.comment}}
+            </div>
+        </div>
+    </div>
+</section>

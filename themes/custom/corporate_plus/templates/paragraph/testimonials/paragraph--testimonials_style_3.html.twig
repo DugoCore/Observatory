@@ -1,0 +1,23 @@
+{# {{content.field_title.0}}
+{{content.field_view.0}} #}
+{% if 'On' in content.field_check[0] %}
+<section class="testimonials-style-3 bg-gray dt-section">
+    <div class="container">
+        <div class="title-3">
+            <span>{{content.field_tagline.0}}</span>
+            <h2>{{content.field_title.0}}</h2>
+        </div>
+        {{content.field_view.0}}
+    </div>
+</section>
+{% else %}
+<section class="testimonials-style-3 pad-top dt-section">
+    <div class="container">
+        <div class="title-3">
+            <span>{{content.field_tagline.0}}</span>
+            <h2>{{content.field_title.0}}</h2>
+        </div>
+        {{content.field_view.0}}
+    </div>
+</section>
+{% endif %}

@@ -1,0 +1,43 @@
+{% if delta == 0 %}
+ <div class="item">
+    <a class="collapsed" data-bs-toggle="collapse" href="#item-1-{{paragraph.id()}}" role="button" aria-expanded="true" aria-controls="item-1-{{paragraph.id()}}" title="Title">
+        <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+                <path data-name="Path 39644" d="M187.726,67.2v50.526H137.2v18.947h50.526V187.2h18.947V136.677H257.2V117.729H206.673V67.2Z" transform="translate(-137.2 -67.203)" fill="#121619"/>
+            </svg>
+            <div class="overlay-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="120" height="20" viewBox="0 0 120 20">
+                    <rect  data-name="Rectangle 18348" width="120" height="20" fill="#121619"/>
+                </svg>
+            </div>
+        </div>
+        {{content.field_title.0}}
+    </a>
+    <div class="collapse show" id="item-1-{{paragraph.id()}}" data-bs-parent="#accordionOne">
+        <div class="item-content">
+            {{content.field_formatted_description.0}}
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="item">
+    <a class="collapsed" data-bs-toggle="collapse" href="#item-1-{{paragraph.id()}}" role="button" aria-expanded="false" aria-controls="item-1-{{paragraph.id()}}" title="Title">
+        <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+                <path data-name="Path 39644" d="M187.726,67.2v50.526H137.2v18.947h50.526V187.2h18.947V136.677H257.2V117.729H206.673V67.2Z" transform="translate(-137.2 -67.203)" fill="#121619"/>
+            </svg>
+            <div class="overlay-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="120" height="20" viewBox="0 0 120 20">
+                    <rect  data-name="Rectangle 18348" width="120" height="20" fill="#121619"/>
+                </svg>
+            </div>
+        </div>
+        {{content.field_title.0}}
+    </a>
+    <div class="collapse" id="item-1-{{paragraph.id()}}" data-bs-parent="#accordionOne">
+        <div class="item-content">
+            {{content.field_formatted_description.0}}
+        </div>
+    </div>
+</div>
+{% endif %}

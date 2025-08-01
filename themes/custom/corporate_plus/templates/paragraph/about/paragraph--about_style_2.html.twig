@@ -1,0 +1,24 @@
+<section class="about-us-2 bg-gray">
+    <div class="container">
+        <div class="row s-30">
+            <div class="col-lg-5">
+                <div class="content dt-section">
+                    <span>{{content.field_tagline.0}}</span>
+                    <h2>{{content.field_title.0}}</h2>
+                    <div class="design-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="81.414" height="12.828" viewBox="0 0 81.414 12.828">
+                            <path  data-name="Path 388" d="M-17000.039-6663.3l10-10,10,10,10-10,10,10,10-10,10,10,10-10,10,10" transform="translate(17000.746 6674.712)" fill="none" stroke="#5bb85c" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    {{content.field_formatted_description.0}}
+                    <a class="btn btn-primary btn-style-1" href="{{content.field_link.0['#url']}}" title="{{content.field_link.0['#title']}}">{{content.field_link.0['#title']}}</a>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="image">
+                    <img src="{{file_url(content.field_image['#items'].entity.uri.value)}}" alt="{{content.field_image['#items'].alt}}">
+                </div>             
+            </div>
+        </div>
+    </div>
+</section>

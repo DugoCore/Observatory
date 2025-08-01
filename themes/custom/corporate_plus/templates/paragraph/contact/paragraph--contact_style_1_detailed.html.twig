@@ -1,0 +1,40 @@
+<section class="contact-page-1">
+    <div class="content">
+        <div class="map">
+            {{content.field_embed_map.0}}     
+        </div>
+        <div class="contact-form-content bg-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) , url({{file_url(content.field_image['#items'].entity.uri.value)}})">
+            <div class="container">
+                <div class="row s-0">
+                    <div class="col-lg-7">
+                        <div class="form-content">
+                            <span>{{content.field_tagline.0}}</span>
+                            <h2>{{content.field_title.0}}</h2>
+                            <div class="form-style-3">
+                                {{content.field_form.0}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="contact-details">
+                            <div class="details-wrapper">
+                                <div class="address">
+                                    <h3>{{content.field_label_1.0}}</h3>
+                                    {{content.field_address.0}}
+                                </div>
+                                <div class="call">
+                                    <h3>{{content.field_label_2.0}}</h3>
+                                    <a href="tel:{{content.field_contact_number.0}}" title="{{content.field_contact_number.0}}">{{content.field_contact_number.0}}</a>
+                                </div>
+                                <div class="mail">
+                                    <h3>{{content.field_label_3.0}}</h3>
+                                    <a href="mailto:{{content.field_e_mail.0}}" title="{{content.field_e_mail.0}}">{{content.field_e_mail.0}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+</section>

@@ -1,0 +1,25 @@
+<section class="why-choose-us-style-1 dt-section">
+    <div class="container">
+        <div class="row s-30">
+            <div class="col-lg-6 col-12">
+                <div class="image">
+                    <img src="{{file_url(content.field_image['#items'].entity.uri.value)}}" alt="{{content.field_image['#items'].alt}}">
+                    <div class="overlay">
+                        <span>{{content.field_text_1.0}}</span>
+                        <span>{{content.field_text_2.0}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="content">
+                    <span>{{content.field_tagline.0}}</span>
+                    <h2>{{content.field_title.0}}</h2>
+                    {{content.field_formatted_description.0}}
+                    <div class="features">
+                        {{content.field_widget}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,11 @@
+{% for row in rows %}
+    {% if row.content['#row']._entity.id == row.nid %}
+    <div class="text-primary">
+        {{row.content}}
+    </div>
+    {% else %}
+    <div class="list-text">
+        {{row.content}}
+    </div>
+    {% endif %}
+{% endfor %}

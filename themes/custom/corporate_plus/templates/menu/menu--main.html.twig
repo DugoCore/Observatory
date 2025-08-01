@@ -1,0 +1,246 @@
+{# {% import _self as menus %} #}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{# {{ menus.menu_links(items, attributes, 0) }}
+
+{% macro menu_links(items, attributes, menu_level) %}
+  {% import _self as menus %}
+    {% if menu_level == 0 %}
+      <ul class="navbar-nav">
+          {% if items %}
+            {% for item in items %}
+              {% if item.below %}
+                {%
+                  set classes = [
+                    'nav-link dropdown-toggle' ,
+                    item.in_active_trail ? 'active',
+                  ]
+                %}
+                {% if item.url.getOption('attributes').link_type in 'mega_menu_0' %}
+                <li class="nav-item dropdown mega-menu"> 
+                  <a {{ item.attributes.addClass(classes)}} data-bs-toggle="dropdown" aria-current="page" href="{{item.url}}" title="{{ item.title }}">{{item.title}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="150" height="94" viewBox="0 0 150 94">
+                        <path  data-name="Path 40645" d="M94,136.591,79.662,150,0,75,79.743,0,94,13.409,28.514,75Z" transform="translate(0 94) rotate(-90)" fill="#181c31"/>
+                    </svg>
+                  </a>
+                  <ul class="dropdown-menu dropdown-wrapper rounded-0 primary-color" data-bs-popper="none">
+                      {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+                  </ul>
+                </li>
+                {% else %}
+                <li class="nav-item dropdown"> 
+                  <a {{ item.attributes.addClass(classes)}} data-bs-toggle="dropdown" aria-current="page" href="{{item.url}}" title="{{ item.title }}">{{item.title}}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="150" height="94" viewBox="0 0 150 94">
+                      <path  data-name="Path 40645" d="M94,136.591,79.662,150,0,75,79.743,0,94,13.409,28.514,75Z" transform="translate(0 94) rotate(-90)" fill="#181c31"/>
+                  </svg>
+                  </a>
+                  <ul class="dropdown-wrapper dropdown-menu rounded-0 primary-color">
+                    {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+                  </ul>
+                </li>
+                {% endif %}
+              {% else %}
+                {%
+                    set classes = [
+                      'nav-link' ,
+                      item.in_active_trail ? 'active',
+                    ]
+                  %}
+                <li class="nav-item">
+                  <a {{ item.attributes.addClass(classes)}} href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+      </ul>
+    {% elseif menu_level == 1 %}
+      {% if items %}
+          {% for item in items %}
+            {% if item.below %}
+              {% if item.url.getOption('attributes').link_type in 'mega_menu_1' %}
+              <li>
+                <h5>{{ item.title }}</h5>
+                <ul>
+                {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+              </li>
+                </ul>
+              {% else %}
+              <li class="dropdown-item dropdown-submenu">
+                <a class="drop-toggle" href="{{ item.url }}" data-bs-toggle="dropdown" title="{{ item.title }}">{{ item.title }}
+                </a>
+                  <ul class="dropdown-menu dropdown-submenu" data-bs-popper="none">
+                    {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+                  </ul>
+              </li>
+              {% endif %}
+            {% else %}
+            <li class="dropdown-item">
+                <a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a>
+            </li>
+            {% endif %}
+          {% endfor %}
+      {% endif %}
+    {% elseif menu_level == 2 %}
+        {% if items %}
+          {% for item in items %}
+            {% if item.below %}
+              <li class="dropdown-item">
+                <a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}
+                </a>
+                  <ul class="dropdown-menu dropdown-submenu" data-bs-popper="none">
+                    {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+                  </ul>
+              </li>
+            {% else %}
+              {% if item.url.getOption('attributes').link_type in 'mega_menu_2' %}
+              <li class="dropdown-item">
+                <a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a>
+              </li>
+              {% else %}
+              <li class="dropdown-item">
+                <a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a>
+              </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+    {% elseif menu_level == 3 %}
+        {% if items %}
+          {% for item in items %}
+            <li>
+            {% if not item.url.toString %}
+              <span class="dropdown-item" href="{{ item.url }}">{{ item.title }}</span>
+            {% else %}
+              <a href="{{ item.url }}">{{ item.title }}</a>
+            {% endif %}
+            </li>
+          {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endmacro %} #}
+
+{% import _self as menus %}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{{ menus.menu_links(items, attributes, 0) }}
+{% macro menu_links(items, attributes, menu_level) %}
+  {% import _self as menus %}
+    {% if menu_level == 0 %}
+      <ul class="navbar-nav ms-auto">
+          {% if items %}
+            {% for item in items %}
+              {% if item.below %}
+                {%
+                  set classes = [
+                    'nav-link' ,
+                    item.in_active_trail ? 'active',
+                  ]
+                %}
+                {% if item.url.getOption('attributes').link_type in 'mega_menu_0' %}
+                <li class="nav-item dropdown mega-menu"> 
+                  <a {{ item.attributes.addClass(classes)}} data-bs-toggle="dropdown" aria-current="page" href="{{item.url}}" title="{{ item.title }}">{{item.title}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="150" height="94" viewBox="0 0 150 94">
+                      <path  data-name="Path 40645" d="M94,136.591,79.662,150,0,75,79.743,0,94,13.409,28.514,75Z" transform="translate(0 94) rotate(-90)" fill="#181c31"></path>
+                    </svg>
+                  </a>
+                  <ul class="dropdown-wrapper dropdown-menu rounded-0 primary-color">
+                      {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+                  </ul>
+                </li>
+                {% else %}
+                <li class="nav-item dropdown"> 
+                  <a {{ item.attributes.addClass(classes)}} data-bs-toggle="dropdown" aria-current="page" href="{{item.url}}" data-bs-auto-close="outside" title="{{ item.title }}">{{item.title}}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="150" height="94" viewBox="0 0 150 94">
+                      <path  data-name="Path 40645" d="M94,136.591,79.662,150,0,75,79.743,0,94,13.409,28.514,75Z" transform="translate(0 94) rotate(-90)" fill="#181c31"></path>
+                  </svg>
+                  </a>
+                  <ul class="dropdown-wrapper dropdown-menu rounded-0 primary-color">
+                    {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+                  </ul>
+                </li>
+                {% endif %}
+              {% else %}
+                {%
+                    set classes = [
+                      'nav-link' ,
+                      item.in_active_trail ? 'active',
+                    ]
+                  %}
+                <li class="nav-item">
+                  <a {{ item.attributes.addClass(classes)}} href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+      </ul>
+    {% elseif menu_level == 1 %}
+      {% if items %}
+          {% for item in items %}
+            {% if item.below %}
+              {% if item.url.getOption('attributes').link_type in 'mega_menu_1' %}
+              <li>
+                <ul>
+                {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+                </ul>
+              </li>  
+              {% else %}
+              <li class="dropdown-item dropdown-submenu" data-bs-popper="none">
+                <a href="{{ item.url }}" class="drop-toggle" data-bs-toggle="dropdown" title="{{ item.title }}">{{ item.title }}
+                </a>
+                  <ul class="dropdown-menu collapse">
+                    {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+                  </ul>
+              </li>
+              {% endif %}
+            {% else %}
+            <li class="dropdown-item">
+                <a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a>
+            </li>
+            {% endif %}
+          {% endfor %}
+      {% endif %}
+    {% elseif menu_level == 2 %}
+        {% if items %}
+          {% for item in items %}
+            {% if item.below %}
+              <li class="dropdown-item">
+                <a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a>
+                <ul class="dropdown-menu dropdown-submenu" data-bs-popper="none">
+                  {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+                </ul>
+              </li>
+            {% else %}
+              {% if item.url.getOption('attributes').link_type in 'mega_menu_2' %}
+              <li class="dropdown-item">
+                <a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a>
+              </li>
+              {% else %}
+              <li class="dropdown-item">
+                <a href="{{ item.url }}" title="{{ item.title }}">{{ item.title }}</a>
+              </li>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+    {% elseif menu_level == 3 %}
+        {% if items %}
+          {% for item in items %}
+            <li>
+            {% if not item.url.toString %}
+              <span class="dropdown-item" href="{{ item.url }}">{{ item.title }}</span>
+            {% else %}
+              <a href="{{ item.url }}">{{ item.title }}</a>
+            {% endif %}
+            </li>
+          {% endfor %}
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+

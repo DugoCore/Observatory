@@ -1,0 +1,16 @@
+<div class="item">
+    <div class="image">
+        <img src="{{file_url(content.field_image['#items'].entity.uri.value)}}" alt="{{content.field_image['#items'].alt}}">
+        <div class="overlay">
+            <div class="icon">
+                <a href="{{file_url(content.field_image['#items'].entity.uri.value)}}"><svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">
+                    <path  data-name="Path 40747" d="M154,79c0,6.912-.6,12.5-7.512,12.5H91.5v54.988c0,6.9-5.587,7.512-12.5,7.512s-12.5-.612-12.5-7.512V91.5H11.512C4.612,91.5,4,85.912,4,79s.612-12.5,7.512-12.5H66.5V11.512C66.5,4.6,72.088,4,79,4s12.5.6,12.5,7.512V66.5h54.988C153.4,66.5,154,72.088,154,79Z" transform="translate(-4 -4)" fill="#181c31"></path>
+                </svg></a>
+            </div>
+            <div class="content">
+                <h2><a href="{{ url('entity.node.canonical', { 'node': node.id() })}}" alt="{{node.label}}">{{node.label}}</a></h2>
+                <span> {{content.field_category.0}}</span>
+            </div>
+        </div>
+    </div>
+</div>

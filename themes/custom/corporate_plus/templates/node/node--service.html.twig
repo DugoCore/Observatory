@@ -1,0 +1,13 @@
+<section class="service-details dt-section">
+    <div class="container">
+        <div class="whole-content">
+            <div class="image">
+                <img src="{{file_url(content.field_image['#items'].entity.uri.value)}}" alt="{{content.field_image['#items'].alt}}">
+            </div>
+            <div class="content">
+                {{content.body.0}}
+                {{content.field_section}}
+            </div>
+        </div>
+    </div>
+</section>

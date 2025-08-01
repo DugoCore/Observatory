@@ -1,0 +1,90 @@
+{#
+/**
+ * @file
+ * Theme override to display a single Drupal page while offline.
+ *
+ * All available variables are mirrored in page.html.twig.
+ * Some may be blank but they are provided for consistency.
+ *
+ * @see template_preprocess_maintenance_page()
+ */
+#}
+
+{% set base_url = url('<front>') %}
+{% if "1" in mode_type  %}
+<!-- Maintenance mode -->
+<div class="coming-soon-page container">
+{% if bg_image_m_url %}
+<div class="coming-soon maintenance bg-image" style="background-image: url({{bg_image_m_url}});">
+{% else %}
+<div class="coming-soon maintenance bg-image" style="background-image: url({{base_url}}sites/default/files/2022-11/dotted-arrow-dark.png);">
+{% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-10 col-12">
+                <div class="item">
+                    {% if maintenance_mode_title %}
+                    <h1>{{maintenance_mode_title}}</h1>
+                    {% endif %}
+                    {% if maintenance_mode_description %}
+                    <p>{{maintenance_mode_description}}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Maintenance mode End-->
+{% else %}
+<div class="coming-soon-page container">
+{% if bg_image_c_url %}
+  <div class="coming-soon bg-image" style="background-image: url({{bg_image_c_url}});">
+  {% else %}
+  <div class="coming-soon bg-image" style="background-image: url({{base_url}}sites/default/files/2022-11/dotted-arrow-dark.png);">
+  {% endif %}
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12 col-md-10 col-12">
+                  <div class="item">
+                      <h1>{{comingsoon_title}}</h1>
+                      <p>{{comingsoon_description}}</p>
+                      <div id="fh5co-main-content">
+                        <div class="dt js-dt">
+                          <div class="dtc js-dtc">
+                            <div id="clockdiv" class="cs-counter">
+                              <div class="cs-date">
+                              <div class="date_expired"></div>
+                                <span class="days"></span>
+                                <div class="counting-title">Days</div>
+                              </div>
+                              <div class="cs-date">
+                                <div class="date_expired"></div>
+                                <span class="hours"></span>
+                                <div class="counting-title">Hours</div>
+                              </div>
+                              <div class="cs-date">
+                                <div class="date_expired"></div>
+                                <span class="minutes"></span>
+                                <div class="counting-title">Minutes</div>
+                              </div>
+                              <div class="cs-date">
+                                <div class="date_expired"></div>
+                                <span class="seconds"></span>
+                                <div class="counting-title">Seconds</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div> 
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Coming Soon End -->
+{% endif %}
+
+
+

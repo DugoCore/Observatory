@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main content
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2> {# Sidebar widget title #}
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    <div{{ content_attributes.addClass('content') }}>
+      <div class="blog-cta-sidebar bg-image" style="background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)) , url({{file_url(content.field_image['#items'].entity.uri.value)}});">
+    <div class="image">
+      <div class="title-and-button">
+        <div class="title">{{content.field_title.0}}</div>
+        <a class="btn btn-outline-primary btn-style-3 btn-sm" title="{{content.field_link.0['#title']}}" href="{{content.field_link.0['#url']}}">{{content.field_link.0['#title']}}</a>
+      </div>
+      <div class="contact-number">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="150.002" height="150" viewBox="0 0 150.002 150"><path id="noun-support-5012357" d="M121.071,93.929a58.929,58.929,0,0,1,117.858,0V99.96A21.439,21.439,0,0,1,255,120.714v21.428a21.449,21.449,0,0,1-25.053,21.123,40.836,40.836,0,0,1-38.161,21.681q-.529.052-1.071.053H180a10.714,10.714,0,0,1,0-21.428h10.714a10.716,10.716,0,0,1,10.672,9.755,30.085,30.085,0,0,0,18.767-14.475,21.39,21.39,0,0,1-8.01-16.709V120.714A21.439,21.439,0,0,1,228.214,99.96l0-6.032a48.215,48.215,0,1,0-96.429,0V99.96a21.439,21.439,0,0,1,16.071,20.754v21.428a21.429,21.429,0,1,1-42.858,0V120.714A21.439,21.439,0,0,1,121.069,99.96ZM126.428,110a10.714,10.714,0,0,0-10.714,10.714v21.428a10.714,10.714,0,1,0,21.428,0V120.714A10.714,10.714,0,0,0,126.429,110Zm96.429,10.714a10.714,10.714,0,1,1,21.428,0v21.428a10.714,10.714,0,1,1-21.428,0Z" transform="translate(-105 -35)" fill="#181c31" fill-rule="evenodd"/></svg>
+        </div>
+        <div class="contact-and-text">
+            <span>{{content.field_text.0}}</span>
+            <a href="tel:{{content.field_contact_number.0}}" title="{{content.field_contact_number.0}}">{{content.field_contact_number.0}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-img">
+      <img src="{{url('<front>')}}/themes/custom/corporate_plus/assets/shape.png" alt="Image">
+    </div>
+  </div>
+    </div>
+  {% endblock %}
+</div>

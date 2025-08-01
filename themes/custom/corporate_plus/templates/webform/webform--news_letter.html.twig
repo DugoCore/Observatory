@@ -1,0 +1,17 @@
+<form {{ attributes }}>
+    <div class="input-group">
+        <div class="newsletter-mail">  
+            {{ element.elements.email }}
+        </div>
+        <div class="newsletter-submit">
+            <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="94" height="150" viewBox="0 0 94 150">
+                    <path  data-name="Path 40647" d="M0,13.409,14.338,0,94,75,14.257,150,0,136.591,65.486,75Z" fill="#181c31"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    {{ element.form_build_id }}
+	{{ element.form_token }}
+	{{ element.form_id }}
+</form>

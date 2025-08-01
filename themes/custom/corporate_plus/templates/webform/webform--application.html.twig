@@ -1,0 +1,26 @@
+
+<div class="careers-details">	
+	<form{{ attributes.addClass('apply-form') }}>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-12">
+				{{ element.elements.name }}
+			</div>
+			<div class="col-lg-6 col-md-6 col-12">
+				{{ element.elements.phone_number }}
+			</div>
+			<div class="col-lg-6 col-md-6 col-12">
+				{{ element.elements.email }}
+			</div>
+			<div class="col-lg-6 col-md-6 col-12">
+				{{ element.elements.role }}
+			</div>
+		</div>
+		<div class="col-12">
+			{{ element.elements.file }}
+		</div>
+		{{ element.elements.actions }}
+		{{ element.form_build_id }}
+		{{ element.form_token }}
+		{{ element.form_id }}
+	</form>
+</div>

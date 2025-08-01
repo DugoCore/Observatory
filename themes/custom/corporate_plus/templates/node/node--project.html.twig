@@ -1,0 +1,46 @@
+<section class="projects-details dt-section">
+    <div class="container">
+        <div class="image">
+            <img src="{{file_url(content.field_image['#items'].entity.uri.value)}}" alt="{{content.field_image['#items'].alt}}">
+        </div>
+        <div class="project-content-details">
+            <div class="title-value">
+                <span>{{content.field_label_1.0}}</span>
+                <h4>{{content.field_text_1.0}}</h4>
+            </div>
+            <div class="title-value">
+                <span>{{content.field_label_2.0}}</span>
+                <h4>{{content.field_category.0['#title']}}</h4>
+            </div>
+            <div class="title-value">
+                <span>{{content.field_label_3.0}}</span>
+                <h4>{{content.field_text_3.0}}</h4>
+            </div>
+            <div class="title-value">
+                <span>{{content.field_label_4.0}}</span>
+                <div class="addtoany-social-icons">
+                    {{drupal_block('addtoany_block')}}
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            {{content.body.0}}
+        </div>
+        <div class="pager">
+            <div class="prev">
+            <h4><a href="{{project_prev_url}}" title="{{project_prev_label}}">    
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="94" height="150" viewBox="0 0 94 150"><path  data-name="Path 40647" d="M94,13.409,79.662,0,0,75l79.743,75L94,136.591,28.514,75Z" fill="#181c31"></path></svg>
+                </span>
+                 {{pager_prev_text}}</a></h4>
+            </div>
+            <div class="next">
+                <h4><a href="{{project_next_url}}" title="{{project_next_label}}">{{pager_next_text}}
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="94" height="150" viewBox="0 0 94 150"><path  data-name="Path 40648" d="M0,13.409,14.338,0,94,75,14.257,150,0,136.591,65.486,75Z" fill="#181c31"></path></svg>
+                </span>
+                </a></h4>
+            </div>
+        </div>
+    </div>
+</section>
