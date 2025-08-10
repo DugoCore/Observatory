@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Template for the observatory logo block content.
+ */
+#}
+
+{% if content.field_logo_image and content.field_logo_image.0 %}
+  {# Solo mostrar la imagen, sin etiquetas ni texto #}
+  {% set image = content.field_logo_image.0 %}
+  {% if image['#item'] %}
+    <img src="{{ file_url(image['#item'].entity.uri.value) }}" 
+         alt="{{ image['#item'].alt }}" 
+         style="height: 80px; width: auto; object-fit: contain;" />
+  {% endif %}
+{% else %}
+  <!-- Fallback logo -->
+  <img src="/themes/custom/corporate_plus/css/images/logo.jpg" 
+       alt="Logo del Observatorio" 
+       style="height: 80px; width: auto; object-fit: contain;" />
+{% endif %} 

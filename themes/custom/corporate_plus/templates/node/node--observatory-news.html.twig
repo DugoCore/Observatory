@@ -1,0 +1,296 @@
+{#
+/**
+ * @file
+ * Template for displaying observatory news nodes.
+ */
+#}
+
+{% block head %}
+<!-- header -->
+<div class="pt_nav_header">
+  {% include '@corporate_plus/header/header-observatory.html.twig' %}
+</div>
+<!-- End of header -->
+{% endblock %}
+
+{% block content %}
+<style>
+/* Estilos generales de la página */
+body {
+  font-family: 'Cabin', sans-serif !important;
+  background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Contenedor principal */
+.main-content {
+  margin-top: 180px !important;
+  padding: 2rem 0 !important;
+  min-height: calc(100vh - 180px) !important;
+}
+
+/* Breadcrumb */
+.breadcrumb-section {
+  background: white !important;
+  padding: 1rem 0 !important;
+  border-bottom: 1px solid #e9ecef !important;
+  margin-bottom: 2rem !important;
+}
+
+.breadcrumb-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+.breadcrumb {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  font-size: 0.9rem !important;
+  color: #666 !important;
+}
+
+.breadcrumb a {
+  color: #1e3a8a !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+
+.breadcrumb a:hover {
+  color: #3b82f6 !important;
+}
+
+.breadcrumb-separator {
+  color: #ccc !important;
+}
+
+/* Contenedor de la noticia */
+.news-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+.news-header {
+  text-align: center !important;
+  margin-bottom: 3rem !important;
+}
+
+.news-title {
+  color: #1e3a8a !important;
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  line-height: 1.2 !important;
+}
+
+.news-meta {
+  color: #666 !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.news-date {
+  background: #1e3a8a !important;
+  color: white !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 20px !important;
+  display: inline-block !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+}
+
+/* Imagen de la noticia */
+.news-image-section {
+  margin-bottom: 3rem !important;
+  text-align: center !important;
+}
+
+.news-image {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.3s ease !important;
+}
+
+.news-image:hover {
+  transform: scale(1.02) !important;
+}
+
+/* Contenido de la noticia */
+.news-content {
+  background: white !important;
+  border-radius: 12px !important;
+  padding: 2rem !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  margin-bottom: 3rem !important;
+}
+
+.news-description {
+  font-size: 1.1rem !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.news-description h2 {
+  color: #1e3a8a !important;
+  font-size: 1.5rem !important;
+  margin: 2rem 0 1rem 0 !important;
+  font-weight: 600 !important;
+}
+
+.news-description h3 {
+  color: #1e3a8a !important;
+  font-size: 1.3rem !important;
+  margin: 1.5rem 0 0.8rem 0 !important;
+  font-weight: 600 !important;
+}
+
+.news-description p {
+  margin-bottom: 1rem !important;
+}
+
+.news-description ul, .news-description ol {
+  margin: 1rem 0 !important;
+  padding-left: 2rem !important;
+}
+
+.news-description li {
+  margin-bottom: 0.5rem !important;
+}
+
+.news-description blockquote {
+  border-left: 4px solid #1e3a8a !important;
+  padding-left: 1rem !important;
+  margin: 1.5rem 0 !important;
+  font-style: italic !important;
+  color: #666 !important;
+}
+
+/* Botones de navegación */
+.news-navigation {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin: 3rem 0 !important;
+  padding: 2rem 0 !important;
+  border-top: 1px solid #e9ecef !important;
+  border-bottom: 1px solid #e9ecef !important;
+}
+
+.nav-button {
+  background: #1e3a8a !important;
+  color: white !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.nav-button:hover {
+  background: #3b82f6 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.nav-button.back {
+  background: #6b7280 !important;
+}
+
+.nav-button.back:hover {
+  background: #4b5563 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .news-title {
+    font-size: 2rem !important;
+  }
+  
+  .news-content {
+    padding: 1.5rem !important;
+  }
+  
+  .news-navigation {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  .nav-button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+</style>
+
+<div class="main-content">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-section">
+    <div class="breadcrumb-container">
+      <div class="breadcrumb">
+        <a href="/">Inicio</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="/noticias">Noticias</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>{{ node.title.value }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenedor de la noticia -->
+  <div class="news-container">
+    <!-- Header de la noticia -->
+    <div class="news-header">
+      <h1 class="news-title">{{ node.title.value }}</h1>
+      <div class="news-meta">
+        <span class="news-date">{{ node.created.value|date('d/m/Y') }}</span>
+      </div>
+    </div>
+
+    <!-- Imagen de la noticia -->
+    {% if node.field_news_image.value %}
+    <div class="news-image-section">
+      <img src="{{ file_url(node.field_news_image.entity.fileuri) }}" 
+           alt="{{ node.field_news_image.alt }}" 
+           class="news-image">
+    </div>
+    {% endif %}
+
+    <!-- Contenido de la noticia -->
+    <div class="news-content">
+      {% if node.field_news_description.value %}
+      <div class="news-description">
+        {{ node.field_news_description.value|raw }}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Navegación -->
+    <div class="news-navigation">
+      <a href="/noticias" class="nav-button back">
+        <i class="fas fa-arrow-left"></i>
+        Volver a Noticias
+      </a>
+      <a href="/" class="nav-button">
+        Ir al Inicio
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+  {% include '@corporate_plus/footer/footer-observatory.html.twig' %}
+{% endblock %}

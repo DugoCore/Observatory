@@ -1,0 +1,5 @@
+services:
+  corporate_plus.twig_extension:
+    class: Drupal\corporate_plus\TwigExtension\CorporatePlusTwigExtension
+    tags:
+      - { name: twig.extension } 

@@ -1,0 +1,196 @@
+{#
+/**
+ * @file
+ * Componente reutilizable para tarjetas de casos de estudio.
+ *
+ * @param title - Título de la tarjeta
+ * @param description - Descripción de la tarjeta
+ * @param is_active - Si la tarjeta está activa (por defecto: false)
+ * @param show_button - Si mostrar botón en lugar de enlace (por defecto: false)
+ * @param button_text - Texto del botón (por defecto: "MORE DETAILS")
+ * @param link_text - Texto del enlace (por defecto: "Learn More")
+ * @param icon_class - Clase del icono (por defecto: "fas fa-bullseye")
+ * @param link_url - URL del enlace (por defecto: "#")
+ * @param image_url - URL de la imagen (por defecto: null)
+ */
+#}
+
+<div class="case-card{% if is_active %} active{% endif %}">
+  <div class="case-thumbnail">
+    {% if image_url %}
+      <img src="{{ image_url }}" alt="{{ title }}" class="case-image">
+    {% endif %}
+    <div class="case-icon">
+      <i class="{{ icon_class|default('fas fa-bullseye') }}"></i>
+    </div>
+  </div>
+  <div class="case-content">
+    <h3 class="case-title">{{ title }}</h3>
+    <p class="case-description">{{ description }}</p>
+    {% if show_button %}
+      <button class="case-button">{{ button_text|default('MORE DETAILS') }}</button>
+    {% else %}
+      <a href="{{ link_url|default('#') }}" class="case-link">
+        {{ link_text|default('Learn More') }}
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+/* Estilos para las tarjetas de casos de estudio */
+.case-card {
+  background: white !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e9ecef !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+}
+
+.case-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.case-card.active {
+  background: #1e3a8a !important;
+  color: white !important;
+}
+
+.case-thumbnail {
+  width: 100% !important;
+  height: 200px !important;
+  background: linear-gradient(45deg, #f97316, #3b82f6, #10b981, #dc2626, #8b5cf6) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.case-thumbnail img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.case-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.3s ease !important;
+}
+
+.case-card:hover .case-image {
+  transform: scale(1.05) !important;
+}
+
+.case-icon {
+  position: absolute !important;
+  top: 1rem !important;
+  right: 1rem !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  font-size: 1.2rem !important;
+}
+
+.case-content {
+  padding: 1.5rem !important;
+}
+
+.case-title {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+  color: #1e3a8a !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.case-card.active .case-title {
+  color: white !important;
+}
+
+.case-description {
+  font-size: 0.9rem !important;
+  color: #666 !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.5 !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.case-card.active .case-description {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.case-link {
+  color: #1e3a8a !important;
+  text-decoration: none !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  transition: all 0.3s ease !important;
+}
+
+.case-link:hover {
+  color: #1e40af !important;
+  transform: translateX(3px) !important;
+}
+
+.case-card.active .case-link {
+  color: white !important;
+}
+
+.case-button {
+  background: #1e3a8a !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 4px !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  font-family: 'Cabin', sans-serif !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.case-button:hover {
+  background: #1e40af !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.3) !important;
+}
+
+.case-card.active .case-button {
+  background: white !important;
+  color: #1e3a8a !important;
+}
+
+.case-card.active .case-button:hover {
+  background: #f8f9fa !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .case-content {
+    padding: 1rem !important;
+  }
+  
+  .case-title {
+    font-size: 1rem !important;
+  }
+  
+  .case-description {
+    font-size: 0.85rem !important;
+  }
+}
+</style> 

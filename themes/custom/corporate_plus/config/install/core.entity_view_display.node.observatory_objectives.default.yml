@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.observatory_objectives.field_objectives
+    - node.type.observatory_objectives
+id: node.observatory_objectives.default
+targetEntityType: node
+bundle: observatory_objectives
+mode: default
+content:
+  field_objectives:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    label: hidden
+    type: string
+    weight: 0
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden: {  }

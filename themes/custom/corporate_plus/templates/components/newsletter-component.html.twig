@@ -1,0 +1,81 @@
+{# Newsletter Component - Reutilizable (Basado en page--front.html.twig) #}
+<style>
+.newsletter-section {
+  background: #1e3a8a !important;
+  padding: 2rem 0 !important;
+  margin: 3rem 0 !important;
+}
+
+.newsletter-section h2 {
+  color: white !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  font-family: 'Cabin', sans-serif !important;
+  margin-bottom: 1rem !important;
+}
+
+.newsletter-form {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  flex-wrap: wrap !important;
+}
+
+.newsletter-form .form-control {
+  padding: 0.75rem 1rem !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  min-width: 250px !important;
+  outline: none !important;
+}
+
+.newsletter-form .form-control::placeholder {
+  color: #999 !important;
+}
+
+.newsletter-form .btn-primary {
+  background: #3b82f6 !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.newsletter-form .btn-primary:hover {
+  background: #2563eb !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+@media (max-width: 768px) {
+  .newsletter-form {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  .newsletter-form .form-control {
+    min-width: auto !important;
+  }
+}
+</style>
+
+<section class="newsletter-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Suscríbete al newsletter</h2>
+        <div class="newsletter-form">
+          <input type="email" placeholder="freebies@sales.com" class="form-control">
+          <button class="btn btn-primary">Suscribete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 

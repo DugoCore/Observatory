@@ -1,0 +1,48 @@
+# Configuración de rutas para el tema Corporate Plus
+inventario_emisiones:
+  path: '/inventario-emisiones'
+  defaults:
+    _controller: '\Drupal\corporate_plus\Controller\InventarioEmisionesController::content'
+    _title: 'Inventario de Emisiones'
+  requirements:
+    _permission: 'access content'
+
+casos_estudio:
+  path: '/casos-estudio'
+  defaults:
+    _controller: '\Drupal\corporate_plus\Controller\CasosEstudioController::content'
+    _title: 'Casos de Estudio'
+  requirements:
+    _permission: 'access content'
+
+registro_acciones:
+  path: '/registro-acciones'
+  defaults:
+    _controller: '\Drupal\corporate_plus\Controller\RegistroAccionesController::content'
+    _title: 'Registro Nacional de Acciones'
+  requirements:
+    _permission: 'access content'
+
+monitoreo_evaluacion:
+  path: '/monitoreo-evaluacion'
+  defaults:
+    _controller: '\Drupal\corporate_plus\Controller\MonitoreoEvaluacionController::content'
+    _title: 'Monitoreo y Evaluación'
+  requirements:
+    _permission: 'access content'
+
+seguimiento_ndc:
+  path: '/seguimiento-ndc'
+  defaults:
+    _controller: '\Drupal\corporate_plus\Controller\SeguimientoNdcController::content'
+    _title: 'Seguimiento NDC'
+  requirements:
+    _permission: 'access content'
+
+hub_conocimiento:
+  path: '/hub-conocimiento'
+  defaults:
+    _controller: '\Drupal\corporate_plus\Controller\HubConocimientoController::content'
+    _title: 'Hub de Conocimiento'
+  requirements:
+    _permission: 'access content' 

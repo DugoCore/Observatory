@@ -1,0 +1,212 @@
+{# Page Template - Override for all pages #}
+
+{# Include Header Component #}
+{% include '@corporate_plus/header/header-observatory.html.twig' %}
+
+{# Check if this is the login page and apply custom styling #}
+{% if path == '/user/login' %}
+  {# Temporary Inline Styles for Login Page #}
+  <style>
+  .login-page {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 60px 0;
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+  }
+
+  .login-form-container {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+  }
+
+  .login-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 0.5rem;
+    font-family: var(--bs-secondary-font, 'Cabin', sans-serif);
+  }
+
+  .login-subtitle {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 0;
+    font-weight: 400;
+  }
+
+  .login-form-wrapper {
+    margin-top: 2rem;
+  }
+
+  .login-form .form-style-1 input {
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+  }
+
+  .login-form .form-style-1 input:focus {
+    border-color: #1e3a8a;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+  }
+
+  .login-form .btn-style-2 {
+    width: 100%;
+    padding: 16px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .login-form .btn-style-2:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+  }
+
+  .login-image-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+
+  .login-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .placeholder-icon {
+    margin-bottom: 20px;
+    opacity: 0.8;
+  }
+
+  .login-placeholder h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: var(--bs-secondary-font, 'Cabin', sans-serif);
+  }
+
+  .login-placeholder p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  @media (max-width: 991.98px) {
+    .login-page {
+      padding: 40px 0;
+    }
+    
+    .login-form-container {
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+    
+    .login-title {
+      font-size: 2rem;
+    }
+    
+    .login-image-wrapper {
+      height: 400px;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .login-form-container {
+      padding: 25px;
+    }
+    
+    .login-title {
+      font-size: 1.8rem;
+    }
+    
+    .login-image-wrapper {
+      height: 300px;
+    }
+  }
+  </style>
+
+  {# Custom Login Layout - Enhanced Design #}
+  <section class="login-page">
+    {# Floating Background Elements #}
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    
+    {# Main Content Container #}
+    <div class="login-content-wrapper">
+      
+      {# Login Form Container #}
+      <div class="login-form-container">
+        
+        {# Login Header #}
+        <div class="login-header">
+          <h1 class="login-title">Bienvenido de Vuelta</h1>
+          <p class="login-subtitle">Ingresa con tu información personal para acceder al sistema</p>
+        </div>
+
+        {# Login Form #}
+        <div class="login-form-wrapper">
+          {{ page.content }}
+        </div>
+
+      </div>
+
+      {# Image Container #}
+      <div class="login-image-container">
+        <div class="login-image-wrapper">
+          <div class="login-placeholder">
+            <div class="placeholder-icon">
+              <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="white"/>
+              </svg>
+            </div>
+            <h3>Observatorio</h3>
+            <p>Sistema de Gestión Ambiental</p>
+          </div>
+        </div>
+      </div>
+
+      </div>
+</section>
+
+{% else %}
+  {# Default page content for non-login pages #}
+  {{ page.content }}
+{% endif %}
+
+{# Include Footer Component #}
+{% include '@corporate_plus/footer/footer-observatory.html.twig' %}

@@ -1,0 +1,157 @@
+{# Footer Component - Reutilizable (Basado en footer-observatory.html.twig) #}
+<style>
+/* Estilos para asegurar que todas las letras del footer sean negras */
+.pt-footer {
+  background: #f8f9fa !important;
+  padding: 3rem 0 1rem !important;
+  margin-top: 2rem !important;
+}
+
+.pt-footer h3 {
+  color: #000000 !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  font-family: 'Cabin', sans-serif !important;
+  margin-bottom: 1rem !important;
+}
+
+.pt-footer p {
+  color: #000000 !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.pt-footer ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.pt-footer ul li {
+  margin-bottom: 0.5rem !important;
+}
+
+.pt-footer ul li a {
+  color: #000000 !important;
+  text-decoration: none !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  transition: color 0.3s ease !important;
+}
+
+.pt-footer ul li a:hover {
+  color: #1e3a8a !important;
+}
+
+.footer-buttons {
+  margin-top: 1rem !important;
+}
+
+.footer-buttons .btn {
+  margin-right: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  font-size: 0.8rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.copyrights {
+  text-align: center !important;
+  padding-top: 2rem !important;
+  border-top: 1px solid #e9ecef !important;
+  margin-top: 2rem !important;
+}
+
+.copyrights p {
+  color: #000000 !important;
+  font-size: 0.8rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  margin: 0 !important;
+}
+
+.back-to-top {
+  position: fixed !important;
+  bottom: 2rem !important;
+  right: 2rem !important;
+  background: #1e3a8a !important;
+  color: white !important;
+  width: 45px !important;
+  height: 45px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  box-shadow: 0 2px 10px rgba(30, 58, 138, 0.3) !important;
+  transition: all 0.3s ease !important;
+  z-index: 1000 !important;
+}
+
+.back-to-top:hover {
+  background: #1e40af !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4) !important;
+}
+
+.back-to-top svg {
+  width: 20px !important;
+  height: 20px !important;
+  fill: white !important;
+}
+</style>
+
+<footer class="pt-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-12">
+        <h3>Observatorio Ambiental</h3>
+        <p>Sistema de gestión ambiental para el monitoreo y control de la calidad del aire, agua y suelo en el territorio nacional.</p>
+        <div class="footer-buttons">
+          <a href="#" class="btn btn-primary btn-sm">Más Información</a>
+          <a href="#" class="btn btn-outline-primary btn-sm">Contacto</a>
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-6 col-12">
+        <h3>Servicios</h3>
+        <ul>
+          <li><a href="#">Monitoreo de Calidad del Aire</a></li>
+          <li><a href="#">Control de Emisiones</a></li>
+          <li><a href="#">Gestión de Residuos</a></li>
+          <li><a href="#">Normativa Ambiental</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3 col-md-6 col-12">
+        <h3>Recursos</h3>
+        <ul>
+          <li><a href="#">Reportes Anuales</a></li>
+          <li><a href="#">Estudios Técnicos</a></li>
+          <li><a href="#">Publicaciones</a></li>
+          <li><a href="#">Base de Datos</a></li>
+        </ul>
+      </div>
+      
+      <div class="col-lg-3 col-md-6 col-12">
+        <h3>Contacto</h3>
+        <p><strong>Dirección:</strong><br>
+        Av. Principal 123<br>
+        Ciudad, País</p>
+        <p><strong>Teléfono:</strong><br>
+        +123 456 7890</p>
+        <p><strong>Email:</strong><br>
+        info@observatorio.com</p>
+      </div>
+    </div>
+    
+    <div class="copyrights">
+      <p>&copy; 2024 Observatorio Ambiental. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="back-to-top" title="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7 14L12 9L17 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</a>

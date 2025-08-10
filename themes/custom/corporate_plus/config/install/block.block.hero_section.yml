@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+  theme:
+    - corporate_plus
+id: hero_section
+theme: corporate_plus
+region: hero_section
+weight: 0
+provider: block_content
+plugin: block_content:observatory_hero
+settings:
+  id: 'block_content:observatory_hero'
+  label: 'Hero del Observatorio'
+  provider: block_content
+  label_display: '0'
+visibility: {  } 

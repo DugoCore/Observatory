@@ -1,0 +1,163 @@
+<style>
+/* Estilos para asegurar que todas las letras del footer sean negras */
+.pt-footer {
+  background: #f8f9fa !important;
+  padding: 3rem 0 1rem !important;
+  margin-top: 2rem !important;
+}
+
+.pt-footer h3 {
+  color: #000000 !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  font-family: 'Cabin', sans-serif !important;
+  margin-bottom: 1rem !important;
+}
+
+.pt-footer p {
+  color: #000000 !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.pt-footer ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.pt-footer ul li {
+  margin-bottom: 0.5rem !important;
+}
+
+.pt-footer ul li a {
+  color: #000000 !important;
+  text-decoration: none !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  transition: color 0.3s ease !important;
+}
+
+.pt-footer ul li a:hover {
+  color: #1e3a8a !important;
+}
+
+.footer-buttons {
+  margin-top: 1rem !important;
+}
+
+.footer-buttons .btn {
+  margin-right: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+  font-size: 0.8rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.copyrights {
+  text-align: center !important;
+  padding-top: 2rem !important;
+  border-top: 1px solid #e9ecef !important;
+  margin-top: 2rem !important;
+}
+
+.copyrights p {
+  color: #000000 !important;
+  font-size: 0.8rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  margin: 0 !important;
+}
+
+.back-to-top {
+  position: fixed !important;
+  bottom: 2rem !important;
+  right: 2rem !important;
+  background: #1e3a8a !important;
+  color: white !important;
+  width: 45px !important;
+  height: 45px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  box-shadow: 0 2px 10px rgba(30, 58, 138, 0.3) !important;
+  transition: all 0.3s ease !important;
+  z-index: 1000 !important;
+}
+
+.back-to-top:hover {
+  background: #1e40af !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(30, 58, 138, 0.4) !important;
+}
+
+.back-to-top svg {
+  width: 20px !important;
+  height: 20px !important;
+  fill: white !important;
+}
+</style>
+
+<div class="pt-footer bg-image dt-section">
+    <div class="container">
+        <div class="row">
+            <div class="footer-top col-12"> 
+                {{page.footer_top}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-12">
+                <div class="social-media-profiles">
+                    <h3>Contacto</h3>
+                    <p>Km 51/2 carretera a Santa Tecla, Carr. Panamericana, San Salvador, El Salvador</p>
+                    <p><i class="fas fa-phone"></i> (+503) 2132-6276</p>
+                    <p><i class="fas fa-envelope"></i> medioambiente@ambiente.gob.sv</p>
+                    <div class="footer-buttons">
+                        <a href="/contacto" class="btn btn-outline-light btn-sm">Contacto</a>
+                        <a href="mailto:medioambiente@ambiente.gob.sv" class="btn btn-outline-light btn-sm">Email</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12 footer-links">
+                <h3>Página</h3>
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/oportunidades">Oportunidades</a></li>
+                    <li><a href="/datos">Acceso a datos</a></li>
+                    <li><a href="/tematicas">Temáticas</a></li>
+                    <li><a href="/acerca-de">Acerca de</a></li>
+                    <li><a href="/user/login">Inicio de sesión</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-12 footer-address">
+                <h3>Secciones</h3>
+                <ul>
+                    <li><a href="/inventario-emisiones">Inventario de Emisiones</a></li>
+                    <li><a href="/casos-estudio">Casos de Estudio</a></li>
+                    <li><a href="/registro-acciones">Registro Nacional de Acciones</a></li>
+                    <li><a href="/monitoreo-evaluacion">Monitoreo y Evaluación</a></li>
+                    <li><a href="/seguimiento-ndc">Seguimiento NDC</a></li>
+                    <li><a href="/hub-conocimiento">Hub de Conocimiento</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="copyrights">
+                <p>&copy; {{ "now"|date("Y") }} Ministerio de Medio Ambiente y Recursos Naturales (MARN). Todos los derechos reservados.</p>
+            </div>
+        </div>  
+    </div>
+</div>
+
+<a href="#" class="back-to-top back-to-top-hide active">
+    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45">
+        <g transform="translate(45) rotate(90)">
+            <g transform="translate(35.438 45) rotate(180)">
+                <path d="M25.792,21.463,4.779.451a1.418,1.418,0,0,0-2.074,0L.451,2.706a1.418,1.418,0,0,0,0,2.074L18.171,22.5.451,40.221a1.418,1.418,0,0,0,0,2.074l2.254,2.254a1.419,1.419,0,0,0,2.074,0L25.791,23.538a1.42,1.42,0,0,0,0-2.075Z"></path>
+            </g>
+        </g>
+    </svg>
+</a> 

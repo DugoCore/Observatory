@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies: {  }
+id: observatory_logo
+label: 'Logo del Observatorio'
+description: 'Bloque para el logo del header del Observatorio'
+revision: 1
+fields:
+  logo_image:
+    type: image
+    settings:
+      file_extensions: 'png gif jpg jpeg'
+      file_directory: 'observatory/logo'
+      max_filesize: ''
+      alt_field: true
+      alt_field_required: true
+      title_field: false
+      title_field_required: false
+      default_image: {  }
+      handler: 'default:file'
+      handler_settings: {  }
+  logo_alt_text:
+    type: string
+    settings:
+      max_length: 255
+      is_ascii: false
+      case_sensitive: false 

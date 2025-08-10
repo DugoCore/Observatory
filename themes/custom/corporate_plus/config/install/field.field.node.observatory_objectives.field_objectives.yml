@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_objectives
+    - node.type.observatory_objectives
+id: node.observatory_objectives.field_objectives
+field_name: field_objectives
+entity_type: node
+bundle: observatory_objectives
+label: 'Objetivos'
+description: 'Lista de objetivos del observatorio'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

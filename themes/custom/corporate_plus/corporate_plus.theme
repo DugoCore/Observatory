@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Functions to support theming in the SASS Starterkit subtheme.
+ * Functions to support theming in the corporate_plus theme.
  */
 
 use Drupal\Core\Form\FormStateInterface;
@@ -16,37 +16,47 @@ use Drupal\Core\Entity\EntityInterface;
 /**
  * Implements hook_theme().
  */
-
-
-function corporate_plus_library_info_alter(&$libraries, $ext){
-  unset($libraries['form']);
+function corporate_plus_theme() {
+  return [
+    'header_component' => [
+      'template' => 'components/header-component',
+    ],
+    'newsletter_component' => [
+      'template' => 'components/newsletter-component',
+    ],
+    'filter_panel_component' => [
+      'template' => 'components/filter-panel-component',
+    ],
+    'page__inventario_emisiones' => [
+      'template' => 'page/page--inventario-emisiones',
+    ],
+    'page__casos_estudio' => [
+      'template' => 'page/page--casos-estudio',
+    ],
+    'page__registro_acciones' => [
+      'template' => 'page/page--registro-acciones',
+    ],
+    'page__monitoreo_evaluacion' => [
+      'template' => 'page/page--monitoreo-evaluacion',
+    ],
+    'bar_chart_component' => [
+      'template' => 'components/bar-chart-component',
+    ],
+    'page__seguimiento_ndc' => [
+      'template' => 'page/page--seguimiento-ndc',
+    ],
+    'page__hub_conocimiento' => [
+      'template' => 'page/page--hub-conocimiento',
+    ],
+    'header_component' => [
+      'variables' => [],
+    ],
+    'footer_component' => [
+      'variables' => [],
+    ],
+  ];
 }
 
-function corporate_plus_theme(&$existing, $type, $theme, $path) { 
-   $hooks = array();
-   $hooks['user_login_form'] = array(
-    'render element' => 'form',
-    'template' => 'user-login-form',
-    'preprocess functions' => array(
-       'corporate_plus_preprocess_user_login'
-    ),
-   );
-   $hooks['user_register_form'] = array(
-    'render element' => 'form',
-    'template' => 'user-register-form',
-    'preprocess functions' => array(
-       'corporate_plus_preprocess_user_register'
-    ),
-   );
-   $hooks['user_pass'] = array(
-    'render element' => 'form',
-    'template' => 'user-pass-form',
-    'preprocess functions' => array(
-       'corporate_plus_preprocess_user_pass'
-    ),
-   );
-   return $hooks; 
-}
 /**
  * Implements hook_preprocess_user_login().
  */
@@ -113,15 +123,54 @@ function corporate_plus_preprocess_user_pass(&$variables) {
   }
 }
 /**
+ * Implements hook_preprocess_user_login_form().
+ */
+function corporate_plus_preprocess_user_login_form(&$variables) {
+  $variables['login_banner_title'] = theme_get_setting('login_banner_title');
+  $variables['login_title'] = theme_get_setting('login_title');
+  $variables['login_description'] = theme_get_setting('login_description');
+  $variables['login_name_text'] = theme_get_setting('login_name_text');
+  $variables['login_pass_text'] = theme_get_setting('login_pass_text');
+  $variables['login_content'] = theme_get_setting('login_content')['value'];
+  $variables['login_content_1'] = theme_get_setting('login_content_1')['value'];
+  
+  // Login - Banner Image
+  $path = "";
+  if (theme_get_setting('login_banner_image') != Null) {
+    $fid = theme_get_setting('login_banner_image')[0];
+    $file = File::load($fid);
+    if (!empty($file)) {
+      $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+    $variables['login_banner_image_url'] = $path;
+  }
+  
+  // Login - Side Image
+  $path = "";
+  if (theme_get_setting('login_image') != Null) {
+    $fid = theme_get_setting('login_image')[0];
+    $file = File::load($fid);
+    if (!empty($file)) {
+      $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+    $variables['login_image_url'] = $path;
+  }
+}
+
+
+
+/**
  * Implements hook_form_alter().
  */
 function corporate_plus_form_alter( &$form, &$form_state, $form_id ) {
-  if ($form_id == 'user_login_form') {
-    $form['name']['#attributes']['placeholder'][]='User Name *';
-    $form['pass']['#attributes']['placeholder'][]='Password *';
-    $form['actions']['submit']['#value'] = t('Login Now');
-    $form['actions']['submit']['#attributes']['class'][]='btn btn-primary btn-style-2 btn-style-md';
-  }
+        if ($form_id == 'user_login_form') {
+        $form['name']['#attributes']['placeholder'][]='User Name *';
+        $form['pass']['#attributes']['placeholder'][]='Password *';
+        $form['actions']['submit']['#value'] = t('Acceder al Sistema');
+        $form['actions']['submit']['#attributes']['class'][]='btn btn-login';
+        $form['actions']['submit']['#prefix'] = '<div class="btn-wrapper">';
+        $form['actions']['submit']['#suffix'] = '<svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/></svg></div>';
+      }
   if ($form_id == 'user_register_form') {
     $form['account']['mail']['#attributes']['placeholder'][]='Email *';
     $form['account']['name']['#attributes']['placeholder'][]='User Name *';
@@ -328,6 +377,28 @@ function corporate_plus_preprocess_page(&$variables) {
     $variables['search_banner_image_url'] = $path;
   }
   $variables['search_banner_title'] = theme_get_setting('search_banner_title');
+  
+  // Add login variables to login page
+  if (\Drupal::routeMatch()->getRouteName() == 'user.login') {
+    $variables['login_banner_title'] = theme_get_setting('login_banner_title');
+    $variables['login_title'] = theme_get_setting('login_title');
+    $variables['login_description'] = theme_get_setting('login_description');
+    $variables['login_name_text'] = theme_get_setting('login_name_text');
+    $variables['login_pass_text'] = theme_get_setting('login_pass_text');
+    $variables['login_content'] = theme_get_setting('login_content')['value'];
+    $variables['login_content_1'] = theme_get_setting('login_content_1')['value'];
+    
+    // Login - Side Image
+    $path = "";
+    if (theme_get_setting('login_image') != Null) {
+      $fid = theme_get_setting('login_image')[0];
+      $file = File::load($fid);
+      if (!empty($file)) {
+        $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+      }
+      $variables['login_image_url'] = $path;
+    }
+  }
 }
 /**
  *   Implements preprocessor for language block.
@@ -529,4 +600,102 @@ function corporate_plus_preprocess_paragraph__question_answer(&$vars) {
       break;
     }
   }
+}
+
+/**
+ * Implements hook_theme_suggestions_node_alter().
+ */
+function corporate_plus_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+  $node = $variables['elements']['#node'];
+  
+  // Add suggestions for observatory_news nodes
+  if ($node->bundle() === 'observatory_news') {
+    $suggestions[] = 'node__observatory_news';
+  }
+  
+  // Add suggestions for noticia_del_observatorio nodes
+  if ($node->bundle() === 'noticia_del_observatorio') {
+    $suggestions[] = 'node__noticia_del_observatorio';
+  }
+}
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function corporate_plus_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  
+  if ($node) {
+    // Add suggestions for observatory_news pages
+    if ($node->bundle() === 'observatory_news') {
+      $suggestions[] = 'page__node__observatory_news';
+      $suggestions[] = 'page__node__news';
+    }
+    
+    // Add suggestions for noticia_del_observatorio pages
+    if ($node->bundle() === 'noticia_del_observatorio') {
+      $suggestions[] = 'page__node__noticia_del_observatorio';
+      $suggestions[] = 'page__node__noticia';
+    }
+  }
+}
+
+/**
+ * Custom function to get latest news with images.
+ */
+function corporate_plus_get_latest_news($limit = 4) {
+  $news = [];
+  
+  try {
+    // Query for latest news nodes
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'noticia_del_observatorio')
+      ->condition('status', 1)
+      ->sort('created', 'DESC')
+      ->range(0, $limit);
+    
+    $nids = $query->execute();
+    
+    if (!empty($nids)) {
+      $nodes = \Drupal::entityTypeManager()
+        ->getStorage('node')
+        ->loadMultiple($nids);
+      
+      foreach ($nodes as $node) {
+        $news_item = [
+          'id' => $node->id(),
+          'title' => $node->getTitle(),
+          'url' => $node->toUrl()->toString(),
+          'description' => '',
+          'image_url' => '',
+        ];
+        
+        // Get description
+        if ($node->hasField('field_descripcion_de_la_noticia') && !$node->get('field_descripcion_de_la_noticia')->isEmpty()) {
+          $news_item['description'] = $node->get('field_descripcion_de_la_noticia')->value;
+        }
+        
+        // Get image
+        if ($node->hasField('field_imagen_de_la_noticia') && !$node->get('field_imagen_de_la_noticia')->isEmpty()) {
+          $file = $node->get('field_imagen_de_la_noticia')->entity;
+          if ($file) {
+            $news_item['image_url'] = $file->createFileUrl();
+          }
+        }
+        
+        $news[] = $news_item;
+      }
+    }
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('corporate_plus')->error('Error getting latest news: @error', ['@error' => $e->getMessage()]);
+  }
+  
+  return $news;
+}
+
+/**
+ * Implements hook_twig_extension().
+ */
+function corporate_plus_twig_extension(\Twig\Environment $twig) {
+  $twig->addFunction(new \Twig\TwigFunction('get_latest_news', 'corporate_plus_get_latest_news'));
 }

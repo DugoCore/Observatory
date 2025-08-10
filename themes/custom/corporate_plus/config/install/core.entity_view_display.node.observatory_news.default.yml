@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.observatory_news.field_news_description
+    - field.field.node.observatory_news.field_news_image
+    - node.type.observatory_news
+id: node.observatory_news.default
+targetEntityType: node
+bundle: observatory_news
+mode: default
+content:
+  field_news_description:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+  field_news_image:
+    label: hidden
+    type: image
+    weight: 1
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+  title:
+    label: hidden
+    type: string
+    weight: 0
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - corporate_plus
+id: primary_menu
+theme: corporate_plus
+region: primary_menu
+weight: 0
+provider: system
+plugin: system_menu_block
+settings:
+  id: system_menu_block:main
+  label: 'Menú principal'
+  provider: system
+  label_display: '0'
+visibility: {  } 

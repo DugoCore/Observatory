@@ -1,0 +1,254 @@
+{#
+/**
+ * @file
+ * Template for the front page of the Climate Change Observatory.
+ */
+#}
+
+{% block head %}
+<!-- header -->
+<div class="pt_nav_header">
+  {% include '@corporate_plus/header/header-observatory.html.twig' %}
+</div>
+<!-- End of header -->
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+{% if page.hero_section %}
+  {{ page.hero_section }}
+{% else %}
+  <!-- Fallback content - Diseño original -->
+  <section class="hero-section" style="background-image: url('/themes/custom/corporate_plus/css/images/Reserva.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10">
+          <div class="hero-content">
+            <h1 class="hero-title">Observatorio de Cambio Climático</h1>
+            <p class="hero-description">
+              Iniciativa del Ministerio de Medio Ambiente y Recursos Naturales (MARN) con el objetivo de centralizar toda la <span class="highlight">información</span> asociada con el Cambio Climático que corresponde a El Salvador.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Feature Cards Overlay -->
+    <div class="feature-cards-overlay">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="feature-card">
+              <h3>Inventario de Emisiones</h3>
+              <a href="/inventario-emisiones" class="feature-link">
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="feature-card">
+              <h3>Casos de Estudio</h3>
+              <a href="/casos-estudio" class="feature-link">
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="feature-card">
+              <h3>Registro Nacional de Acciones</h3>
+              <a href="/registro-acciones" class="feature-link">
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="feature-card">
+              <h3>Monitoreo y Evaluación</h3>
+              <a href="/monitoreo-evaluacion" class="feature-link">
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="feature-card">
+              <h3>Seguimiento NDC</h3>
+              <a href="/seguimiento-ndc" class="feature-link">
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="feature-card">
+              <h3>Hub de Conocimiento</h3>
+              <a href="/hub-conocimiento" class="feature-link">
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+<!-- Featured Information Section -->
+<section class="featured-info-section">
+  <div class="container">
+    <h2 class="section-title">Información destacada</h2>
+    
+    {# View dinámico que se actualiza automáticamente #}
+    {% set view = drupal_view('noticias_destacadas', 'block_1') %}
+    {% if view %}
+      {{ view }}
+    {% else %}
+      {# Fallback si el View no está disponible #}
+      <div class="row">
+        {% for i in range(1, 4) %}
+          <div class="col-lg-3 col-md-6">
+            {% include '@corporate_plus/components/case-card-component.html.twig' with {
+              title: 'Noticia ' ~ i,
+              description: 'Esta noticia se actualiza automáticamente desde la base de datos de Drupal.',
+              is_active: false,
+              show_button: false,
+              link_text: 'Learn More →',
+              icon_class: 'fas fa-newspaper',
+              link_url: '/node/' ~ (115 + i),
+              image_url: 'https://picsum.photos/400/200?random=' ~ i
+            } %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Observatory Objectives Section -->
+<section class="objectives-section">
+  <div class="container">
+    <h2 class="section-title">Objetivos del observatorio</h2>
+    <p class="objectives-intro">
+      Reunir y sistematizar toda la información asociada a Cambio Climático de El Salvador, incluyendo planes, programas, acciones y datos que contribuyan de manera efectiva en la toma de decisiones asociadas a la acción climática.
+    </p>
+    <div class="row">
+      <div class="col-lg-6 col-md-6">
+        <div class="objective-card">
+          <p>Agrupar la documentación climática en un solo espacio digital.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="objective-card">
+          <p>Habilitar un espacio de aprendizaje sobre cambio climático.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="objective-card">
+          <p>Permitir la visualización de los Inventarios de Gases de Efecto Invernadero de El Salvador.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="objective-card">
+          <p>Agilizar el acceso a data climática para el monitoreo y seguimiento de acciones.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="objective-card">
+          <p>Facilitar la visibilización de las acciones climáticas locales.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="statistics-section">
+  <div class="container">
+    <h2 class="section-title">Estadísticas</h2>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="chart-container">
+          <div class="chart-header">
+            <h3 class="chart-title">Revenue Per Month</h3>
+            <div class="chart-controls">
+              <button class="btn btn-sm btn-chart active">Chart</button>
+              <button class="btn btn-sm btn-chart">Table</button>
+            </div>
+          </div>
+          <div class="chart-placeholder bar-chart-placeholder">
+            <div class="chart-bars">
+              <div class="bar-chart-bar" style="height: 40%;"></div>
+              <div class="bar-chart-bar" style="height: 60%;"></div>
+              <div class="bar-chart-bar" style="height: 80%;"></div>
+              <div class="bar-chart-bar" style="height: 30%;"></div>
+              <div class="bar-chart-bar" style="height: 50%;"></div>
+              <div class="bar-chart-bar" style="height: 70%;"></div>
+              <div class="bar-chart-bar" style="height: 90%;"></div>
+              <div class="bar-chart-bar" style="height: 75%;"></div>
+              <div class="bar-chart-bar bar-chart-bar-highlighted" style="height: 100%;">
+                <span class="bar-chart-label">23.8%</span>
+              </div>
+              <div class="bar-chart-bar" style="height: 65%;"></div>
+              <div class="bar-chart-bar" style="height: 45%;"></div>
+              <div class="bar-chart-bar" style="height: 35%;"></div>
+            </div>
+            <div class="chart-labels">
+              <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="chart-container">
+          <div class="chart-header">
+            <div class="chart-title-large">152,569</div>
+            <p class="chart-subtitle">Sales Statistics</p>
+            <div class="chart-controls">
+              <button class="btn btn-sm btn-chart active">Chart</button>
+              <button class="btn btn-sm btn-chart">Table</button>
+            </div>
+          </div>
+          <div class="chart-placeholder line-chart-placeholder">
+            <svg width="100%" height="100%" viewBox="0 0 400 250" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#1e3a8a" />
+                  <stop offset="100%" stop-color="#3b82f6" />
+                </linearGradient>
+                <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(30, 58, 138, 0.4)" />
+                  <stop offset="100%" stop-color="rgba(30, 58, 138, 0)" />
+                </linearGradient>
+              </defs>
+              <polyline class="line-chart-area" fill="url(#areaGradient)" points="0,200 50,150 100,180 150,120 200,160 250,100 300,140 350,80 400,120" />
+              <polyline class="line-chart-line" fill="none" stroke="url(#lineGradient)" stroke-width="3" points="0,200 50,150 100,180 150,120 200,160 250,100 300,140 350,80 400,120" />
+              <circle class="line-chart-point" cx="250" cy="100" r="6" fill="#3b82f6" stroke="white" stroke-width="3" />
+              <text class="line-chart-label" x="250" y="80" text-anchor="middle" fill="#1e3a8a" font-size="16" font-weight="bold">23.8%</text>
+            </svg>
+            <div class="chart-labels">
+              <span>3</span><span>6</span><span>9</span><span>12</span><span>15</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Suscríbete al newsletter</h2>
+        <div class="newsletter-form">
+          <input type="email" placeholder="freebies@sales.com" class="form-control">
+          <button class="btn btn-primary">Suscribete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+  {% include '@corporate_plus/footer/footer-observatory.html.twig' %}
+{% endblock %} 

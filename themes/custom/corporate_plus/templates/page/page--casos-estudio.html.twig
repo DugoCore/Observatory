@@ -1,0 +1,491 @@
+{#
+/**
+ * @file
+ * Template for the Casos de Estudio page.
+ */
+#}
+
+{% block head %}
+<!-- header -->
+<div class="pt_nav_header">
+  {% include '@corporate_plus/header/header-observatory.html.twig' %}
+</div>
+<!-- End of header -->
+{% endblock %}
+
+{% block content %}
+<style>
+/* Estilos generales de la página */
+body {
+  font-family: 'Cabin', sans-serif !important;
+  background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Contenedor principal */
+      .main-content {
+        margin-top: 180px !important;
+        padding: 2rem 0 !important;
+        min-height: calc(100vh - 180px) !important;
+      }
+
+/* Título principal */
+.page-title {
+  color: #1e3a8a !important;
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  margin-bottom: 2rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+/* Layout principal */
+.content-layout {
+  display: grid !important;
+  grid-template-columns: 300px 1fr !important;
+  gap: 2rem !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+
+
+/* Panel de contenido principal */
+.content-panel {
+  background: white !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Sección del mapa */
+.map-section {
+  margin-bottom: 2rem !important;
+  position: relative !important;
+}
+
+.map-container {
+  width: 100% !important;
+  height: 400px !important;
+  background: #f8f9fa !important;
+  border-radius: 6px !important;
+  border: 1px solid #e9ecef !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.map-placeholder {
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(45deg, #e9ecef 25%, transparent 25%), 
+              linear-gradient(-45deg, #e9ecef 25%, transparent 25%), 
+              linear-gradient(45deg, transparent 75%, #e9ecef 75%), 
+              linear-gradient(-45deg, transparent 75%, #e9ecef 75%) !important;
+  background-size: 20px 20px !important;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #666 !important;
+  font-size: 1rem !important;
+  text-align: center !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.map-controls {
+  position: absolute !important;
+  left: 1rem !important;
+  top: 1rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+}
+
+.zoom-control {
+  width: 30px !important;
+  height: 30px !important;
+  background: white !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  color: #666 !important;
+  font-size: 1.2rem !important;
+}
+
+.map-markers {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.map-marker {
+  width: 20px !important;
+  height: 20px !important;
+  background: #1e3a8a !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  font-size: 0.7rem !important;
+  font-weight: bold !important;
+  margin: 0.5rem !important;
+}
+
+.map-pagination {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  margin-top: 1rem !important;
+  gap: 0.5rem !important;
+}
+
+.pagination-control {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  flex-direction: row !important;
+}
+
+.pagination-control span {
+  white-space: nowrap !important;
+  display: inline !important;
+}
+
+.pagination-select {
+  padding: 0.5rem !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  background: white !important;
+  outline: none !important;
+  position: relative !important;
+  z-index: 1 !important;
+  min-width: 80px !important;
+  max-width: 120px !important;
+}
+
+/* Sección de casos de estudio */
+.cases-section {
+  margin-top: 2rem !important;
+}
+
+.cases-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1.5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.case-card {
+  background: white !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e9ecef !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+}
+
+.case-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+.case-card.active {
+  background: #1e3a8a !important;
+  color: white !important;
+}
+
+.case-thumbnail {
+  width: 100% !important;
+  height: 200px !important;
+  background: linear-gradient(45deg, #f97316, #3b82f6, #10b981, #dc2626, #8b5cf6) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.case-thumbnail img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.case-icon {
+  position: absolute !important;
+  top: 1rem !important;
+  right: 1rem !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  font-size: 1.2rem !important;
+}
+
+.case-content {
+  padding: 1.5rem !important;
+}
+
+.case-title {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.5rem !important;
+  color: #1e3a8a !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.case-card.active .case-title {
+  color: white !important;
+}
+
+.case-description {
+  font-size: 0.9rem !important;
+  color: #666 !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.5 !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.case-card.active .case-description {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.case-link {
+  color: #1e3a8a !important;
+  text-decoration: none !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.case-card.active .case-link {
+  color: white !important;
+}
+
+.case-button {
+  background: #1e3a8a !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 4px !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  font-family: 'Cabin', sans-serif !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  text-transform: uppercase !important;
+}
+
+.case-card.active .case-button {
+  background: white !important;
+  color: #1e3a8a !important;
+}
+
+/* Paginación */
+.pagination {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  margin-top: 2rem !important;
+}
+
+.pagination-item {
+  padding: 0.5rem 1rem !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  background: white !important;
+  color: #666 !important;
+  text-decoration: none !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  transition: all 0.3s ease !important;
+}
+
+.pagination-item:hover,
+.pagination-item.active {
+  background: #1e3a8a !important;
+  color: white !important;
+  border-color: #1e3a8a !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-layout {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .page-title {
+    font-size: 2rem !important;
+    text-align: center !important;
+  }
+  
+  .cases-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .map-container {
+    height: 300px !important;
+  }
+}
+</style>
+
+<!-- Main Content Section -->
+<div class="main-content">
+  <div class="container">
+    {# Título principal #}
+    <h1 class="page-title">Casos de estudio</h1>
+    
+          {# Layout principal #}
+      <div class="content-layout">
+        {# Panel de filtros #}
+        {% include '@corporate_plus/components/filter-panel-component.html.twig' %}
+      
+      {# Panel de contenido principal #}
+      <div class="content-panel">
+        {# Sección del mapa #}
+        <div class="map-section">
+          <div class="map-container">
+            <div class="map-placeholder">
+              Mapa de casos de estudio<br>
+              <small>Aquí se integraría el mapa interactivo</small>
+            </div>
+            
+            {# Controles de zoom #}
+            <div class="map-controls">
+              <div class="zoom-control">+</div>
+              <div class="zoom-control">-</div>
+            </div>
+            
+            {# Marcadores del mapa #}
+            <div class="map-markers">
+              <div class="map-marker">M</div>
+              <div class="map-marker">M</div>
+              <div class="map-marker">M</div>
+            </div>
+          </div>
+          
+          {# Control de paginación del mapa #}
+          <div class="map-pagination">
+            <div class="pagination-control">
+              <span>Mostrar del</span>
+              <select class="pagination-select">
+                <option value="10">1-10</option>
+                <option value="20">1-20</option>
+                <option value="50">1-50</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        {# Sección de casos de estudio #}
+        <div class="cases-section">
+          <div class="cases-grid">
+            {# Caso de estudio 1 #}
+            {% include '@corporate_plus/components/case-card-component.html.twig' with {
+              title: 'Caso de estudio 1',
+              description: 'Aenean nisi tellus, varius ut quam euismod, pellentesque bibendum ex.',
+              is_active: false,
+              show_button: false,
+              link_text: 'Learn More'
+            } %}
+            
+            {# Caso de estudio 2 (activo) #}
+            {% include '@corporate_plus/components/case-card-component.html.twig' with {
+              title: 'Caso de estudio 2',
+              description: 'Aenean nisi tellus, varius ut quam euismod, pellentesque bibendum ex.',
+              is_active: true,
+              show_button: true,
+              button_text: 'MORE DETAILS'
+            } %}
+            
+            {# Caso de estudio 3 #}
+            {% include '@corporate_plus/components/case-card-component.html.twig' with {
+              title: 'Caso de estudio 3',
+              description: 'Aenean nisi tellus, varius ut quam euismod, pellentesque bibendum ex.',
+              is_active: false,
+              show_button: false,
+              link_text: 'Learn More'
+            } %}
+          </div>
+          
+          {# Paginación #}
+          <div class="pagination">
+            <a href="#" class="pagination-item">&lt; Anterior</a>
+            <a href="#" class="pagination-item active">1</a>
+            <a href="#" class="pagination-item">2</a>
+            <a href="#" class="pagination-item">3</a>
+            <a href="#" class="pagination-item">Siguiente &gt;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Suscríbete al newsletter</h2>
+        <div class="newsletter-form">
+          <input type="email" placeholder="freebies@sales.com" class="form-control">
+          <button class="btn btn-primary">Suscribete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+  {% include '@corporate_plus/footer/footer-observatory.html.twig' %}
+{% endblock %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Funcionalidad para los controles de zoom del mapa
+  const zoomControls = document.querySelectorAll('.zoom-control');
+  zoomControls.forEach(control => {
+    control.addEventListener('click', function() {
+      console.log('Zoom control clicked:', this.textContent);
+    });
+  });
+  
+  // Funcionalidad para los casos de estudio
+  const caseCards = document.querySelectorAll('.case-card');
+  caseCards.forEach(card => {
+    card.addEventListener('click', function() {
+      // Remover clase active de todas las tarjetas
+      caseCards.forEach(c => c.classList.remove('active'));
+      // Agregar clase active a la tarjeta clickeada
+      this.classList.add('active');
+    });
+  });
+  
+  // Inicializar datepickers (si se usa una librería)
+  const dateInputs = document.querySelectorAll('.date-input input');
+  dateInputs.forEach(input => {
+    input.addEventListener('click', function() {
+      // Aquí se puede integrar un datepicker
+      console.log('Date input clicked');
+    });
+  });
+});
+</script> 

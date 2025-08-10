@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.observatory_objectives.field_objectives
+    - node.type.observatory_objectives
+id: node.observatory_objectives.default
+targetEntityType: node
+bundle: observatory_objectives
+mode: default
+content:
+  field_objectives:
+    type: text_textarea_with_summary
+    weight: 1
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

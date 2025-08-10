@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies: {  }
+id: observatory_logo_1
+revision_id: 1
+type: observatory_logo
+bundle: observatory_logo
+revision_translation_affected: true
+default_langcode: true
+content_translation_source: und
+content_translation_outdated: false
+logo_image:
+  target_id: null
+  alt: 'Logo del Observatorio'
+  title: ''
+  width: null
+  height: null
+logo_alt_text:
+  value: 'Logo del Observatorio'
+changed: 1640995200
+default_langcode: true
+content_translation_source: und
+content_translation_outdated: false 

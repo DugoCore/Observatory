@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Template for the observatory logo block.
+ */
+#}
+
+{% set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+] %}
+
+<!-- DEBUG: BLOCK CONTENT -->
+<div style="background: yellow; color: black; padding: 10px; margin: 10px; font-family: monospace; position: fixed; top: 150px; left: 20px; z-index: 9999; border: 3px solid black;">
+  <strong>DEBUG LOGO BLOCK:</strong><br>
+  Plugin ID: {{ plugin_id }}<br>
+  Provider: {{ configuration.provider }}<br>
+  Content keys: {{ content|keys|join(', ') }}<br>
+  Field logo image exists: {{ content.field_logo_image is defined ? 'YES' : 'NO' }}<br>
+  {% if content.field_logo_image is defined %}
+    Field logo image 0 exists: {{ content.field_logo_image.0 is defined ? 'YES' : 'NO' }}<br>
+  {% endif %}
+</div>
+
+<div{{ attributes.addClass(classes) }}>
+  {# Solo mostrar el contenido, sin título ni texto #}
+  {{ content }}
+</div> 

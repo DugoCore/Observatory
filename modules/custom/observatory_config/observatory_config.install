@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the observatory_config module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function observatory_config_install() {
+  // This module will install configuration when enabled.
+}

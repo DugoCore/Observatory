@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_news_description
+    - node.type.observatory_news
+id: node.observatory_news.field_news_description
+field_name: field_news_description
+entity_type: node
+bundle: observatory_news
+label: 'Descripción de la noticia'
+description: 'Resumen o descripción de la noticia'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

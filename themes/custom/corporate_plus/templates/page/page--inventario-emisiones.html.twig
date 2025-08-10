@@ -1,0 +1,702 @@
+{#
+/**
+ * @file
+ * Template for the Inventario de Emisiones page.
+ */
+#}
+
+{% block head %}
+<!-- header -->
+<div class="pt_nav_header">
+  {% include '@corporate_plus/header/header-observatory.html.twig' %}
+</div>
+<!-- End of header -->
+{% endblock %}
+
+{% block content %}
+<style>
+/* Estilos generales de la página */
+body {
+  font-family: 'Cabin', sans-serif !important;
+  background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Contenedor principal */
+      .main-content {
+        margin-top: 180px !important;
+        padding: 2rem 0 !important;
+        min-height: calc(100vh - 180px) !important;
+      }
+
+/* Título principal */
+.page-title {
+  color: #1e3a8a !important;
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  margin-bottom: 2rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+/* Tabs de navegación */
+.tabs-container {
+  margin-bottom: 2rem !important;
+}
+
+.tabs-nav {
+  display: flex !important;
+  justify-content: center !important;
+  border-bottom: 2px solid #e9ecef !important;
+  margin-bottom: 2rem !important;
+}
+
+.tab-item {
+  padding: 1rem 2rem !important;
+  background: none !important;
+  border: none !important;
+  color: #666 !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  font-family: 'Cabin', sans-serif !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+}
+
+.tab-item.active {
+  color: #1e3a8a !important;
+  font-weight: 600 !important;
+}
+
+.tab-item.active::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 2px !important;
+  background: #1e3a8a !important;
+}
+
+.tab-item:hover {
+  color: #1e3a8a !important;
+}
+
+/* Layout principal */
+.content-layout {
+  display: grid !important;
+  grid-template-columns: 300px 1fr !important;
+  gap: 2rem !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+
+
+/* Panel de datos */
+.data-panel {
+  background: white !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.data-header {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  margin-bottom: 1.5rem !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+}
+
+.pagination-control {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  flex-direction: row !important;
+}
+
+.pagination-control span {
+  white-space: nowrap !important;
+  display: inline !important;
+}
+
+.pagination-select {
+  padding: 0.5rem !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  background: white !important;
+  outline: none !important;
+  position: relative !important;
+  z-index: 1 !important;
+  min-width: 80px !important;
+  max-width: 120px !important;
+}
+
+/* Mejorar el comportamiento del dropdown */
+.pagination-select:focus {
+  border-color: #1e3a8a !important;
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.1) !important;
+}
+
+/* Asegurar que el contenedor del dropdown no cause problemas */
+.data-header {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  margin-bottom: 1.5rem !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.pagination-control {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  flex-direction: row !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+/* Tabla de datos */
+.data-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Mejorar el comportamiento del panel de datos */
+.data-panel {
+  background: white !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.data-table th {
+  background: #f8f9fa !important;
+  color: #333 !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  padding: 1rem !important;
+  text-align: left !important;
+  border-bottom: 2px solid #e9ecef !important;
+}
+
+.data-table td {
+  padding: 1rem !important;
+  border-bottom: 1px solid #e9ecef !important;
+  color: #666 !important;
+  font-size: 0.9rem !important;
+}
+
+.data-table tr:hover {
+  background: #f8f9fa !important;
+}
+
+.download-btn {
+  background: #1e3a8a !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 4px !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  font-family: 'Cabin', sans-serif !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+}
+
+.download-btn:hover {
+  background: #1e40af !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.3) !important;
+}
+
+.download-btn i {
+  font-size: 0.7rem !important;
+}
+
+/* Estilos para la pestaña Inventario de emisiones */
+.tab-content {
+  display: none !important;
+}
+
+.tab-content.active {
+  display: block !important;
+}
+
+/* Sección de estadísticas */
+.stats-section {
+  margin-bottom: 3rem !important;
+}
+
+.stats-title {
+  color: #1e3a8a !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1.5rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.stats-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1.5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.stat-box {
+  background: #f8f9fa !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  text-align: center !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e9ecef !important;
+}
+
+.stat-value {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #1e3a8a !important;
+  margin-bottom: 0.5rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.stat-label {
+  font-size: 0.9rem !important;
+  color: #666 !important;
+  font-weight: 500 !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.stat-year {
+  font-size: 0.8rem !important;
+  color: #999 !important;
+  font-weight: 400 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Sección del gráfico */
+.chart-section {
+  background: white !important;
+  border-radius: 8px !important;
+  padding: 2rem !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  margin-bottom: 2rem !important;
+}
+
+.chart-title {
+  color: #1e3a8a !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1.5rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+
+
+.chart-legend {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 1rem !important;
+  font-size: 0.8rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.legend-column {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+}
+
+.legend-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.legend-color {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 2px !important;
+  flex-shrink: 0 !important;
+}
+
+.legend-text {
+  color: #333 !important;
+  font-size: 0.75rem !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-layout {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .page-title {
+    font-size: 2rem !important;
+  }
+  
+  .tabs-nav {
+    flex-direction: column !important;
+  }
+  
+  .tab-item {
+    text-align: center !important;
+  }
+  
+  .data-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .chart-legend {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Estilos adicionales para mejorar el dropdown */
+.pagination-select option {
+  padding: 0.5rem !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+/* Asegurar que el dropdown no se corte en el contenedor */
+.data-panel {
+  overflow: visible !important;
+  z-index: 1 !important;
+}
+
+/* Mejorar la apariencia del control de paginación */
+.pagination-control {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+</style>
+
+<!-- Main Content Section -->
+<div class="main-content">
+  <div class="container">
+    {# Título principal #}
+    <h1 class="page-title">Inventario de Emisiones</h1>
+    
+    {# Tabs de navegación #}
+    <div class="tabs-container">
+      <div class="tabs-nav">
+        <button class="tab-item active">Listado De Documentos</button>
+        <button class="tab-item">Inventario de emisiones</button>
+      </div>
+    </div>
+    
+    {# Contenido de las pestañas #}
+    <div class="tab-content active" id="tab-documentos">
+      {# Layout principal para Listado De Documentos #}
+      <div class="content-layout">
+        {# Panel de filtros #}
+        {% include '@corporate_plus/components/filter-panel-component.html.twig' %}
+        
+        {# Panel de datos #}
+        <div class="data-panel">
+          <div class="data-header">
+            <div class="pagination-control">
+              <span>Mostrar del</span>
+              <select class="pagination-select">
+                <option value="10">1 - 10</option>
+                <option value="20">1 - 20</option>
+                <option value="50">1 - 50</option>
+              </select>
+            </div>
+          </div>
+          
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Lorem Ipsum</th>
+                <th>Lorem Ipsum</th>
+                <th>Lorem Ipsum</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="download-btn">
+                    <i class="fas fa-download"></i>
+                    Descargar
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="download-btn">
+                    <i class="fas fa-download"></i>
+                    Descargar
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="download-btn">
+                    <i class="fas fa-download"></i>
+                    Descargar
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="download-btn">
+                    <i class="fas fa-download"></i>
+                    Descargar
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="download-btn">
+                    <i class="fas fa-download"></i>
+                    Descargar
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="download-btn">
+                    <i class="fas fa-download"></i>
+                    Descargar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    {# Contenido de la pestaña Inventario de emisiones #}
+    <div class="tab-content" id="tab-inventario">
+      {# Sección de estadísticas #}
+      <div class="stats-section">
+        <h3 class="stats-title">Emisiones y variación de las emisiones de las actividades y gases seleccionados en 2023</h3>
+        
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-year">2023</div>
+            <div class="stat-value">152,569</div>
+            <div class="stat-label">Kt CO2-eq</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-year">2023</div>
+            <div class="stat-value">100.0%</div>
+            <div class="stat-label"></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-year">2023</div>
+            <div class="stat-value">-18,797.7</div>
+            <div class="stat-label">Kt CO2-eq</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">-10.3%</div>
+            <div class="stat-label"></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">-14.8%</div>
+            <div class="stat-label"></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">-48.7%</div>
+            <div class="stat-label"></div>
+          </div>
+        </div>
+      </div>
+      
+      {# Sección del gráfico #}
+      <div class="chart-section">
+        <h3 class="chart-title">Evolución de emisiones de CO2-eq por sector agregado y actividad(es) IPCC y gas(es seleccionados)</h3>
+        
+        {# Gráfico de barras usando el componente #}
+        {% set y_labels = ['200K', '150K', '100K', '50K', '0K'] %}
+        {% set x_labels = ['1990', '1995', '2000', '2005', '2010', '2015', '2020', '2025'] %}
+        {% set bar_data = [
+          {'bars': [{'color_index': 1, 'height': 85}, {'color_index': 2, 'height': 65}, {'color_index': 3, 'height': 45}, {'color_index': 4, 'height': 35}]},
+          {'bars': [{'color_index': 1, 'height': 90}, {'color_index': 2, 'height': 70}, {'color_index': 3, 'height': 50}, {'color_index': 4, 'height': 40}]},
+          {'bars': [{'color_index': 1, 'height': 95}, {'color_index': 2, 'height': 75}, {'color_index': 3, 'height': 55}, {'color_index': 4, 'height': 45}]},
+          {'bars': [{'color_index': 1, 'height': 100}, {'color_index': 2, 'height': 80}, {'color_index': 3, 'height': 60}, {'color_index': 4, 'height': 50}]},
+          {'bars': [{'color_index': 1, 'height': 105}, {'color_index': 2, 'height': 85}, {'color_index': 3, 'height': 65}, {'color_index': 4, 'height': 55}]},
+          {'bars': [{'color_index': 1, 'height': 110}, {'color_index': 2, 'height': 90}, {'color_index': 3, 'height': 70}, {'color_index': 4, 'height': 60}]},
+          {'bars': [{'color_index': 1, 'height': 115}, {'color_index': 2, 'height': 95}, {'color_index': 3, 'height': 75}, {'color_index': 4, 'height': 65}]},
+          {'bars': [{'color_index': 1, 'height': 120}, {'color_index': 2, 'height': 100}, {'color_index': 3, 'height': 80}, {'color_index': 4, 'height': 70}]}
+        ] %}
+        
+        {% include '@corporate_plus/components/bar-chart-component.html.twig' with {
+          y_labels: y_labels,
+          x_labels: x_labels,
+          bar_data: bar_data,
+          chart_height: '400px'
+        } %}
+        
+        <div class="chart-legend">
+          <div class="legend-column">
+            <div class="legend-item">
+              <div class="legend-color" style="background: #1e3a8a;"></div>
+              <div class="legend-text">Combustión estacionaria en agricultura/selvicultivos</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #f97316;"></div>
+              <div class="legend-text">Cultivos</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #3b82f6;"></div>
+              <div class="legend-text">Emisiones fugitivas</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #8b5cf6;"></div>
+              <div class="legend-text">Generación eléctrica</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #059669;"></div>
+              <div class="legend-text">Industria (combustión)</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #10b981;"></div>
+              <div class="legend-text">Industria (emisiones de proceso)</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #dc2626;"></div>
+              <div class="legend-text">Industria del refino (combustión)</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #92400e;"></div>
+              <div class="legend-text">Navegación nacional</div>
+            </div>
+          </div>
+          
+          <div class="legend-column">
+            <div class="legend-item">
+              <div class="legend-color" style="background: #0d9488;"></div>
+              <div class="legend-text">Otras industrias energéticas (combustión)</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #1e40af;"></div>
+              <div class="legend-text">Otros tipos de transporte</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #ea580c;"></div>
+              <div class="legend-text">Residencial, Comercial e Institucional (combustión)</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #7c3aed;"></div>
+              <div class="legend-text">Residuos</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #0ea5e9;"></div>
+              <div class="legend-text">Transporte aéreo</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #166534;"></div>
+              <div class="legend-text">Transporte por carretera</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #eab308;"></div>
+              <div class="legend-text">Uso de disolventes y otros productos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Suscríbete al newsletter</h2>
+        <div class="newsletter-form">
+          <input type="email" placeholder="freebies@sales.com" class="form-control">
+          <button class="btn btn-primary">Suscribete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+  {% include '@corporate_plus/footer/footer-observatory.html.twig' %}
+{% endblock %}
+
+<script>
+// Funcionalidad para los tabs
+document.addEventListener('DOMContentLoaded', function() {
+  const tabItems = document.querySelectorAll('.tab-item');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabItems.forEach((tab, index) => {
+    tab.addEventListener('click', function() {
+      // Remover clase active de todos los tabs
+      tabItems.forEach(t => t.classList.remove('active'));
+      // Agregar clase active al tab clickeado
+      this.classList.add('active');
+      
+      // Ocultar todos los contenidos de pestañas
+      tabContents.forEach(content => content.classList.remove('active'));
+      
+      // Mostrar el contenido correspondiente
+      if (index === 0) {
+        document.getElementById('tab-documentos').classList.add('active');
+      } else if (index === 1) {
+        document.getElementById('tab-inventario').classList.add('active');
+      }
+    });
+  });
+  
+  // Inicializar datepickers (si se usa una librería)
+  const dateInputs = document.querySelectorAll('.date-input input');
+  dateInputs.forEach(input => {
+    input.addEventListener('click', function() {
+      // Aquí se puede integrar un datepicker
+      console.log('Date input clicked');
+    });
+  });
+});
+</script> 

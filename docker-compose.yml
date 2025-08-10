@@ -1,0 +1,42 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: observatory_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: observatory_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: Wk7u!rDq29*eLzpA
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - observatory_network
+
+  web:
+    build: .
+    container_name: observatory_web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: observatory_db
+      DB_USER: user
+      DB_PASSWORD: Wk7u!rDq29*eLzpA
+      DB_PORT: 3306
+    volumes:
+      - ./sites/default/files:/var/www/html/sites/default/files
+    networks:
+      - observatory_network
+
+volumes:
+  db_data:
+
+networks:
+  observatory_network:
+    driver: bridge

@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+  theme:
+    - corporate_plus
+id: header_logo
+theme: corporate_plus
+region: header_logo
+weight: 0
+provider: block_content
+plugin: block_content:observatory_logo
+settings:
+  id: 'block_content:observatory_logo'
+  label: 'Logo del Header'
+  provider: block_content
+  label_display: '0'
+visibility: {  } 

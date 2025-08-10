@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies: {  }
+id: observatory_hero
+label: 'Hero del Observatorio'
+description: 'Bloque para el hero section del Observatorio'
+revision: 1
+fields:
+  title:
+    type: string
+    settings:
+      max_length: 255
+      is_ascii: false
+      case_sensitive: false
+  description:
+    type: text_long
+    settings:
+      size: 60
+      max_length: 1000
+  background_image:
+    type: string
+    settings:
+      max_length: 255
+      is_ascii: false
+      case_sensitive: false
+  highlight_text:
+    type: string
+    settings:
+      max_length: 100
+      is_ascii: false
+      case_sensitive: false 

@@ -1,0 +1,1030 @@
+{#
+/**
+ * @file
+ * Template for the Hub de Conocimiento page.
+ */
+#}
+
+{% block head %}
+<!-- header -->
+<div class="pt_nav_header">
+  {% include '@corporate_plus/header/header-observatory.html.twig' %}
+</div>
+<!-- End of header -->
+{% endblock %}
+
+{% block content %}
+<style>
+/* Estilos generales de la página */
+body {
+  font-family: 'Cabin', sans-serif !important;
+  background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Contenedor principal */
+      .main-content {
+        margin-top: 180px !important;
+        padding: 2rem 0 !important;
+        min-height: calc(100vh - 180px) !important;
+      }
+
+/* Título principal */
+.page-title {
+  color: #1e3a8a !important;
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  margin-bottom: 2rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+/* Tabs de navegación */
+.tabs-container {
+  margin-bottom: 2rem !important;
+}
+
+.tabs-nav {
+  display: flex !important;
+  justify-content: center !important;
+  border-bottom: 2px solid #e9ecef !important;
+  margin-bottom: 2rem !important;
+}
+
+.tab-item {
+  padding: 1rem 2rem !important;
+  background: none !important;
+  border: none !important;
+  color: #666 !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  font-family: 'Cabin', sans-serif !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+}
+
+.tab-item.active {
+  color: #1e3a8a !important;
+  font-weight: 600 !important;
+}
+
+.tab-item.active::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 2px !important;
+  background: #1e3a8a !important;
+}
+
+.tab-item:hover {
+  color: #1e3a8a !important;
+}
+
+/* Layout principal */
+.content-layout {
+  display: grid !important;
+  grid-template-columns: 300px 1fr !important;
+  gap: 2rem !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+/* Panel de datos */
+.data-panel {
+  background: white !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.data-header {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  margin-bottom: 1.5rem !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.pagination-control {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  flex-direction: row !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+.pagination-control span {
+  white-space: nowrap !important;
+  display: inline !important;
+}
+
+.pagination-select {
+  padding: 0.5rem !important;
+  border: 1px solid #ddd !important;
+  border-radius: 4px !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  background: white !important;
+  outline: none !important;
+  position: relative !important;
+  z-index: 1 !important;
+  min-width: 80px !important;
+  max-width: 120px !important;
+}
+
+/* Tabla de datos */
+.data-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.data-table th {
+  background: #f8f9fa !important;
+  color: #333 !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  padding: 1rem !important;
+  text-align: left !important;
+  border-bottom: 2px solid #e9ecef !important;
+}
+
+.data-table th.sortable {
+  color: #1e3a8a !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.data-table th.sortable:hover {
+  color: #1e40af !important;
+}
+
+.data-table td {
+  padding: 1rem !important;
+  border-bottom: 1px solid #e9ecef !important;
+  color: #666 !important;
+  font-size: 0.9rem !important;
+}
+
+.data-table tr:hover {
+  background: #f8f9fa !important;
+}
+
+.view-btn {
+  background: #1e3a8a !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 4px !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  font-family: 'Cabin', sans-serif !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+}
+
+.view-btn:hover {
+  background: #1e40af !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(30, 58, 138, 0.3) !important;
+}
+
+.view-btn i {
+  font-size: 0.7rem !important;
+}
+
+/* Paginación */
+.pagination {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  margin-top: 2rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+.pagination-item {
+  padding: 0.5rem 1rem !important;
+  border: 1px solid #e9ecef !important;
+  border-radius: 4px !important;
+  color: #666 !important;
+  text-decoration: none !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  background: white !important;
+}
+
+.pagination-item:hover {
+  background: #f8f9fa !important;
+  color: #333 !important;
+}
+
+.pagination-item.active {
+  background: #1e3a8a !important;
+  color: white !important;
+  border-color: #1e3a8a !important;
+}
+
+.pagination-item:first-child,
+.pagination-item:last-child {
+  color: #1e3a8a !important;
+  font-weight: 600 !important;
+}
+
+/* Estilos para las pestañas de contenido */
+.tab-content {
+  display: none !important;
+}
+
+.tab-content.active {
+  display: block !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-layout {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .page-title {
+    font-size: 2rem !important;
+  }
+  
+  .tabs-nav {
+    flex-direction: column !important;
+  }
+  
+  .tab-item {
+    text-align: center !important;
+  }
+  
+  .data-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  .pagination {
+    flex-wrap: wrap !important;
+    gap: 0.25rem !important;
+  }
+  
+  .pagination-item {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Estilos adicionales para mejorar el dropdown */
+.pagination-select option {
+  padding: 0.5rem !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+}
+
+/* Asegurar que el dropdown no se corte en el contenedor */
+.data-panel {
+  overflow: visible !important;
+  z-index: 1 !important;
+}
+
+/* Mejorar la apariencia del control de paginación */
+.pagination-control {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Estilos para las tarjetas de contenido */
+.cards-container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+.cards-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 2rem !important;
+  margin-top: 2rem !important;
+}
+
+.content-card {
+  background: white !important;
+  border-radius: 12px !important;
+  padding: 2rem !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  text-align: center !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  border: 2px solid transparent !important;
+}
+
+.content-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15) !important;
+  border-color: #1e3a8a !important;
+}
+
+.card-icon {
+  width: 120px !important;
+  height: 120px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 1.5rem !important;
+  font-size: 3rem !important;
+  color: white !important;
+}
+
+.infografia-icon {
+  background: #3b82f6 !important;
+}
+
+.video-icon {
+  background: #1e293b !important;
+}
+
+.mitigacion-icon {
+  background: #1e293b !important;
+}
+
+.residuos-icon {
+  background: #1e293b !important;
+}
+
+.card-title {
+  color: #333 !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  font-family: 'Cabin', sans-serif !important;
+  line-height: 1.4 !important;
+}
+
+/* Responsive para las tarjetas */
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  .content-card {
+    padding: 1.5rem !important;
+  }
+  
+  .card-icon {
+    width: 100px !important;
+    height: 100px !important;
+    font-size: 2.5rem !important;
+  }
+  
+     .card-title {
+     font-size: 1.1rem !important;
+   }
+ }
+ 
+   /* Estilos para las tarjetas de noticias usando el componente de casos de estudio */
+  .news-cards-container {
+    margin-top: 1rem !important;
+  }
+  
+  .news-cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+ 
+ 
+ 
+   /* Responsive para las tarjetas de noticias */
+  @media (max-width: 1024px) {
+    .news-cards-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 1.5rem !important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .news-cards-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+  }
+  
+  /* Estilos para la pestaña Definiciones Generales */
+  .definiciones-container {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    padding: 0 1rem !important;
+  }
+  
+  .help-question {
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  .help-question h2 {
+    color: #666 !important;
+    font-size: 1.5rem !important;
+    font-weight: 500 !important;
+    font-family: 'Cabin', sans-serif !important;
+    margin: 0 !important;
+  }
+  
+  .search-container {
+    margin-bottom: 3rem !important;
+  }
+  
+  .search-bar {
+    position: relative !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+  }
+  
+  .search-icon {
+    position: absolute !important;
+    left: 1rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: #666 !important;
+    font-size: 1.1rem !important;
+    z-index: 2 !important;
+  }
+  
+  .search-input {
+    width: 100% !important;
+    padding: 1rem 1rem 1rem 3rem !important;
+    border: none !important;
+    border-radius: 8px !important;
+    background: #f8f9fa !important;
+    font-size: 1rem !important;
+    font-family: 'Cabin', sans-serif !important;
+    color: #333 !important;
+    outline: none !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .search-input::placeholder {
+    color: #999 !important;
+  }
+  
+  .search-input:focus {
+    background: white !important;
+    box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2) !important;
+  }
+  
+  .accordion-container {
+    margin-top: 2rem !important;
+  }
+  
+  .accordion-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  
+  .accordion-panel {
+    background: #f8f9fa !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+  }
+  
+  .accordion-panel:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .accordion-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 1.5rem !important;
+    background: #f8f9fa !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .accordion-panel:hover .accordion-header {
+    background: #e9ecef !important;
+  }
+  
+  .accordion-text {
+    color: #333 !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    font-family: 'Cabin', sans-serif !important;
+    margin: 0 !important;
+  }
+  
+  .accordion-icon {
+    color: #666 !important;
+    font-size: 0.9rem !important;
+    transition: transform 0.3s ease !important;
+  }
+  
+  .accordion-panel:hover .accordion-icon {
+    transform: rotate(180deg) !important;
+  }
+  
+  /* Responsive para Definiciones Generales */
+  @media (max-width: 768px) {
+    .accordion-grid {
+      grid-template-columns: 1fr !important;
+      gap: 0.75rem !important;
+    }
+    
+    .help-question h2 {
+      font-size: 1.3rem !important;
+    }
+    
+    .search-input {
+      padding: 0.875rem 1rem 0.875rem 2.5rem !important;
+      font-size: 0.9rem !important;
+    }
+    
+    .search-icon {
+      font-size: 1rem !important;
+      left: 0.875rem !important;
+    }
+    
+    .accordion-header {
+      padding: 1.25rem !important;
+    }
+    
+    .accordion-text {
+      font-size: 0.9rem !important;
+    }
+  }
+</style>
+
+<!-- Main Content Section -->
+<div class="main-content">
+  <div class="container">
+    {# Título principal #}
+    <h1 class="page-title">Hub de Conocimiento</h1>
+    
+         {# Tabs de navegación #}
+     <div class="tabs-container">
+       <div class="tabs-nav">
+         <button class="tab-item">Guia de HDC</button>
+         <button class="tab-item">Educativos</button>
+                   <button class="tab-item">Capacitaciones</button>
+                    <button class="tab-item">Noticas</button>
+          <button class="tab-item active">Definiciones generales</button>
+       </div>
+     </div>
+    
+         {# Contenido de las pestañas #}
+     <div class="tab-content" id="tab-guia">
+      {# Layout principal para Guia de HDC #}
+      <div class="content-layout">
+        {# Panel de filtros #}
+        {% include '@corporate_plus/components/filter-panel-component.html.twig' %}
+        
+        {# Panel de datos #}
+        <div class="data-panel">
+          <div class="data-header">
+            <div class="pagination-control">
+              <span>Mostrar del</span>
+              <select class="pagination-select">
+                <option value="10">1 - 10</option>
+                <option value="20">1 - 20</option>
+                <option value="50">1 - 50</option>
+              </select>
+            </div>
+          </div>
+          
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="sortable">Lorem Ipsum</th>
+                <th class="sortable">Lorem Ipsum</th>
+                <th class="sortable">Lorem Ipsum</th>
+                <th class="sortable">Lorem Ipsum</th>
+                <th>Ver</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="view-btn">
+                    <i class="fas fa-eye"></i>
+                    Ver
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="view-btn">
+                    <i class="fas fa-eye"></i>
+                    Ver
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="view-btn">
+                    <i class="fas fa-eye"></i>
+                    Ver
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="view-btn">
+                    <i class="fas fa-eye"></i>
+                    Ver
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="view-btn">
+                    <i class="fas fa-eye"></i>
+                    Ver
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="view-btn">
+                    <i class="fas fa-eye"></i>
+                    Ver
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          {# Paginación #}
+          <div class="pagination">
+            <a href="#" class="pagination-item">Anterior</a>
+            <a href="#" class="pagination-item active">1</a>
+            <a href="#" class="pagination-item">2</a>
+            <a href="#" class="pagination-item">3</a>
+            <a href="#" class="pagination-item">Siguiente</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {# Contenido de la pestaña Educativos #}
+    <div class="tab-content" id="tab-educativos">
+      <div class="cards-container">
+        <div class="cards-grid">
+          {# Tarjeta 1 - Infografía GEF #}
+          <div class="content-card">
+            <div class="card-icon infografia-icon">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+            <h3 class="card-title">Infografía GEF</h3>
+          </div>
+          
+          {# Tarjeta 2 - Video de adaptación #}
+          <div class="content-card">
+            <div class="card-icon video-icon">
+              <i class="fas fa-play-circle"></i>
+            </div>
+            <h3 class="card-title">Video de adaptación</h3>
+          </div>
+          
+          {# Tarjeta 3 - Mitigación #}
+          <div class="content-card">
+            <div class="card-icon mitigacion-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3 class="card-title">Mitigación</h3>
+          </div>
+          
+          {# Tarjeta 4 - Gestión de Residuos #}
+          <div class="content-card">
+            <div class="card-icon residuos-icon">
+              <i class="fas fa-recycle"></i>
+            </div>
+            <h3 class="card-title">Gestión de Residuos</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+                   {# Contenido de la pestaña Capacitaciones #}
+      <div class="tab-content" id="tab-capacitaciones">
+      <div class="content-layout">
+        {% include '@corporate_plus/components/filter-panel-component.html.twig' %}
+        
+        <div class="data-panel">
+          <div class="data-header">
+            <div class="pagination-control">
+              <span>Mostrar del</span>
+              <select class="pagination-select">
+                <option value="10">1 - 10</option>
+                <option value="20">1 - 20</option>
+                <option value="50">1 - 50</option>
+              </select>
+            </div>
+          </div>
+          
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="sortable">Lorem Ipsum</th>
+                <th class="sortable">Lorem Ipsum</th>
+                <th class="sortable">Lorem Ipsum</th>
+                <th class="sortable">Lorem Ipsum</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>Lorem ipsum dolor sit amet</td>
+                <td>
+                  <button class="view-btn">
+                    <i class="fas fa-link"></i>
+                    Ir
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="pagination">
+            <a href="#" class="pagination-item">Anterior</a>
+            <a href="#" class="pagination-item active">1</a>
+            <a href="#" class="pagination-item">2</a>
+            <a href="#" class="pagination-item">3</a>
+            <a href="#" class="pagination-item">Siguiente</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+                   {# Contenido de la pestaña Noticas #}
+      <div class="tab-content" id="tab-noticas">
+      <div class="content-layout">
+        {% include '@corporate_plus/components/filter-panel-component.html.twig' %}
+        
+        <div class="data-panel">
+          <div class="data-header">
+            <div class="pagination-control">
+              <span>Mostrar del</span>
+              <select class="pagination-select">
+                <option value="10">1 - 10</option>
+                <option value="20">1 - 20</option>
+                <option value="50">1 - 50</option>
+              </select>
+            </div>
+          </div>
+          
+                     {# Tarjetas de noticias usando el componente de casos de estudio #}
+           <div class="news-cards-container">
+             <div class="news-cards-grid">
+               {# Tarjeta 1 - Mapa geográfico #}
+               {% include '@corporate_plus/components/case-card-component.html.twig' with {
+                 title: 'Lorem Ipsum',
+                 description: 'Aenean nisi tellus, varius ut quam euismod, pellentesque bibendum ex.',
+                 is_active: false,
+                 show_button: false,
+                 link_text: 'Learn More',
+                 icon_class: 'fas fa-map-marked-alt'
+               } %}
+               
+               {# Tarjeta 2 - Mapa topográfico (activa) #}
+               {% include '@corporate_plus/components/case-card-component.html.twig' with {
+                 title: 'Lorem Ipsum',
+                 description: 'Aenean nisi tellus, varius ut quam euismod, pellentesque bibendum ex.',
+                 is_active: true,
+                 show_button: true,
+                 button_text: 'MORE DETAILS',
+                 icon_class: 'fas fa-map'
+               } %}
+               
+               {# Tarjeta 3 - Mapa de ciudad #}
+               {% include '@corporate_plus/components/case-card-component.html.twig' with {
+                 title: 'Lorem Ipsum',
+                 description: 'Aenean nisi tellus, varius ut quam euismod, pellentesque bibendum ex.',
+                 is_active: false,
+                 show_button: false,
+                 link_text: 'Learn More',
+                 icon_class: 'fas fa-city'
+               } %}
+             </div>
+           </div>
+          
+          <div class="pagination">
+            <a href="#" class="pagination-item">Anterior</a>
+            <a href="#" class="pagination-item active">1</a>
+            <a href="#" class="pagination-item">2</a>
+            <a href="#" class="pagination-item">3</a>
+            <a href="#" class="pagination-item">Siguiente</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+         {# Contenido de la pestaña Definiciones generales #}
+     <div class="tab-content active" id="tab-definiciones">
+      <div class="definiciones-container">
+        {# Pregunta principal #}
+        <div class="help-question">
+          <h2>¿En Que Podemos Ayudarte?</h2>
+        </div>
+        
+        {# Barra de búsqueda #}
+        <div class="search-container">
+          <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Describe el problema o pregunta">
+          </div>
+        </div>
+        
+        {# Paneles acordeón #}
+        <div class="accordion-container">
+          <div class="accordion-grid">
+            {# Panel 1 #}
+            <div class="accordion-panel">
+              <div class="accordion-header">
+                <span class="accordion-text">Lorem Ipsum Is Simply Dummy</span>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+              </div>
+            </div>
+            
+            {# Panel 2 #}
+            <div class="accordion-panel">
+              <div class="accordion-header">
+                <span class="accordion-text">Lorem Ipsum Is Simply Dummy</span>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+              </div>
+            </div>
+            
+            {# Panel 3 #}
+            <div class="accordion-panel">
+              <div class="accordion-header">
+                <span class="accordion-text">Lorem Ipsum Is Simply Dummy</span>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+              </div>
+            </div>
+            
+            {# Panel 4 #}
+            <div class="accordion-panel">
+              <div class="accordion-header">
+                <span class="accordion-text">Lorem Ipsum Is Simply Dummy</span>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+              </div>
+            </div>
+            
+            {# Panel 5 #}
+            <div class="accordion-panel">
+              <div class="accordion-header">
+                <span class="accordion-text">Lorem Ipsum Is Simply Dummy</span>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+              </div>
+            </div>
+            
+            {# Panel 6 #}
+            <div class="accordion-panel">
+              <div class="accordion-header">
+                <span class="accordion-text">Lorem Ipsum Is Simply Dummy</span>
+                <i class="fas fa-chevron-down accordion-icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Suscríbete al newsletter</h2>
+        <div class="newsletter-form">
+          <input type="email" placeholder="freebies@sales.com" class="form-control">
+          <button class="btn btn-primary">Suscribete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+  {% include '@corporate_plus/footer/footer-observatory.html.twig' %}
+{% endblock %}
+
+<script>
+// Funcionalidad para los tabs
+document.addEventListener('DOMContentLoaded', function() {
+  const tabItems = document.querySelectorAll('.tab-item');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabItems.forEach((tab, index) => {
+    tab.addEventListener('click', function() {
+      // Remover clase active de todos los tabs
+      tabItems.forEach(t => t.classList.remove('active'));
+      // Agregar clase active al tab clickeado
+      this.classList.add('active');
+      
+      // Ocultar todos los contenidos de pestañas
+      tabContents.forEach(content => content.classList.remove('active'));
+      
+      // Mostrar el contenido correspondiente
+      if (index === 0) {
+        document.getElementById('tab-guia').classList.add('active');
+      } else if (index === 1) {
+        document.getElementById('tab-educativos').classList.add('active');
+      } else if (index === 2) {
+        document.getElementById('tab-capacitaciones').classList.add('active');
+      } else if (index === 3) {
+        document.getElementById('tab-noticas').classList.add('active');
+      } else if (index === 4) {
+        document.getElementById('tab-definiciones').classList.add('active');
+      }
+    });
+  });
+  
+  // Funcionalidad para los headers ordenables
+  const sortableHeaders = document.querySelectorAll('.sortable');
+  sortableHeaders.forEach(header => {
+    header.addEventListener('click', function() {
+      // Aquí se puede implementar la funcionalidad de ordenamiento
+      console.log('Sorting by:', this.textContent);
+    });
+  });
+  
+  // Inicializar datepickers (si se usa una librería)
+  const dateInputs = document.querySelectorAll('.date-input input');
+  dateInputs.forEach(input => {
+    input.addEventListener('click', function() {
+      // Aquí se puede integrar un datepicker
+      console.log('Date input clicked');
+    });
+  });
+  
+  // Funcionalidad para los paneles acordeón
+  const accordionPanels = document.querySelectorAll('.accordion-panel');
+  accordionPanels.forEach(panel => {
+    panel.addEventListener('click', function() {
+      // Aquí se puede implementar la funcionalidad de expansión/colapso
+      console.log('Accordion panel clicked:', this.querySelector('.accordion-text').textContent);
+    });
+  });
+  
+  // Funcionalidad para la barra de búsqueda
+  const searchInput = document.querySelector('.search-input');
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      // Aquí se puede implementar la funcionalidad de búsqueda
+      console.log('Search input:', this.value);
+    });
+  }
+});
+</script> 

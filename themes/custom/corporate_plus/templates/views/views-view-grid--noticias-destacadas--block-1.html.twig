@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Template for displaying the noticias destacadas view in grid format.
+ */
+#}
+
+<div class="row">
+  {% for row in rows %}
+    {% set node = row['#row']._entity %}
+    {% if node %}
+      <div class="col-lg-3 col-md-6">
+        {% include '@corporate_plus/components/case-card-component.html.twig' with {
+          title: node.label(),
+          description: node.field_descripcion_de_la_noticia.value ? node.field_descripcion_de_la_noticia.value|striptags|slice(0, 100) ~ '...' : 'Descripción de la noticia del observatorio.',
+          is_active: false,
+          show_button: false,
+          link_text: 'Learn More →',
+          icon_class: 'fas fa-newspaper',
+          link_url: '/node/' ~ node.id(),
+          image_url: node.field_imagen_de_la_noticia.entity.fileuri ? file_url(node.field_imagen_de_la_noticia.entity.fileuri) : 'https://picsum.photos/400/200?random=' ~ loop.index
+        } %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>

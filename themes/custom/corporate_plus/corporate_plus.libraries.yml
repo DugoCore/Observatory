@@ -11,6 +11,7 @@ global-styling:
     js/purecounter_vanilla.js: {}
     js/packery-mode.pkgd.js: {}
     js/global.js: {}
+    js/components.js: {}
   css:
     component:
       css/font-awesome/css/all.css: {}
@@ -22,6 +23,8 @@ global-styling:
       css/owl.carousel.min.css: {}
       css/owl.theme.default.min.css: {}
       css/style.css: {}
+      css/login-page.css: {}
+      css/components.css: {}
       color/color-scheme.css: {}
       css/colors.css: {}
   dependencies:
@@ -29,6 +32,17 @@ global-styling:
     - core/drupal
     - core/drupalSettings
     - core/once
+
+# Librería para componentes reutilizables
+components:
+  version: VERSION
+  dependencies:
+    - corporate_plus/global-styling
+  js:
+    js/components.js: {}
+  css:
+    component:
+      css/components.css: {}
 bootstrap:
   js:
     /libraries/bootstrap/js/popper.min.js: {}  
@@ -36,7 +50,6 @@ bootstrap:
   css:
     component:
       /libraries/bootstrap/css/bootstrap.min.css: {}
-maintenance_files:
   dependencies:
     - core/jquery
     - core/jquery.once

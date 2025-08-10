@@ -1,0 +1,5 @@
+name: 'Observatory Configuration'
+type: module
+description: 'Installs configuration for the Observatory theme'
+core_version_requirement: ^9 || ^10
+package: Custom

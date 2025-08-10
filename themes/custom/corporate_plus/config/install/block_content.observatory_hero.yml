@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies: {  }
+id: observatory_hero_1
+revision_id: 1
+type: observatory_hero
+bundle: observatory_hero
+revision_translation_affected: true
+default_langcode: true
+content_translation_source: und
+content_translation_outdated: false
+title: 'Hero del Observatorio'
+description:
+  value: 'Iniciativa del Ministerio de Medio Ambiente y Recursos Naturales (MARN) con el objetivo de centralizar toda la información asociada con el Cambio Climático que corresponde a El Salvador.'
+  format: basic_html
+background_image:
+  value: '/themes/custom/corporate_plus/css/images/Reserva.jpg'
+highlight_text:
+  value: 'información'
+changed: 1640995200
+default_langcode: true
+content_translation_source: und
+content_translation_outdated: false 

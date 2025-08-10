@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Template for the observatory logo block.
+ */
+#}
+
+{# Ocultar completamente el título del bloque #}
+{% set title_prefix = '' %}
+{% set title_suffix = '' %}
+
+{# Renderizar directamente la imagen sin el contenido del campo #}
+{% if content.field_logo_image %}
+  {% if content.field_logo_image.0 %}
+    {% set image_item = content.field_logo_image.0['#item'] %}
+    {% if image_item %}
+      <div style="position: relative;">
+        <!-- Edit Button for Logo -->
+        {% if user.hasPermission('administer blocks') %}
+          <div class="edit-button" style="position: absolute; top: -10px; right: -10px; z-index: 1000; display: none; opacity: 0; transition: opacity 0.3s ease;">
+            <button onclick="window.open('{{ path('entity.block_content.edit_form', {'block_content': content['#block_content'].id()}) }}', '_blank')" title="Editar Logo" style="background: #007cba; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 12px;">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+          </div>
+        {% endif %}
+        
+        <img src="{{ file_url(image_item.entity.uri.value) }}"
+             alt="{{ image_item.alt }}"
+             style="height: 80px; width: auto; object-fit: contain;" />
+      </div>
+    {% endif %}
+  {% endif %}
+{% endif %} 

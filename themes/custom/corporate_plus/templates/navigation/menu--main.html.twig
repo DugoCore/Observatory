@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Template for the main menu.
+ */
+#}
+{% if items %}
+  <ul class="navbar-nav">
+    {% for item in items %}
+      <li class="nav-item">
+        <a class="nav-link{{ item.is_active ? ' active' : '' }}" href="{{ item.url }}"{{ item.attributes }}>
+          {{ item.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %} 

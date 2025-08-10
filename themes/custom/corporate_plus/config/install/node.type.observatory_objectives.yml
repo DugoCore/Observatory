@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+id: observatory_objectives
+label: 'Objetivos del Observatorio'
+description: 'Objetivos y metas del Observatorio de Cambio Climático'
+help: 'Crear un objetivo específico del observatorio para mostrar en la página principal.'
+new_revision: true
+preview_mode: 1
+display_submitted: true

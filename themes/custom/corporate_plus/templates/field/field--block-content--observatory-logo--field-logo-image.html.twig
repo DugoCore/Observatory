@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Template for the logo image field.
+ */
+#}
+
+{% for item in items %}
+  {% if item.content %}
+    {# Solo mostrar la imagen, sin etiquetas ni texto #}
+    <img src="{{ file_url(item.content['#item'].entity.uri.value) }}" 
+         alt="{{ item.content['#item'].alt }}" 
+         style="height: 80px; width: auto; object-fit: contain;" />
+  {% endif %}
+{% endfor %} 

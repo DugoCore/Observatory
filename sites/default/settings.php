@@ -901,7 +901,20 @@ $databases['default']['default'] = array (
   'port' => '3306',
   'isolation_level' => 'READ COMMITTED',
   'driver' => 'mysql',
-  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
-  'autoload' => 'core/modules/mysql\\src\\Driver\\Database\\mysql\\',
+  'namespace' => 'Drupal\Core\Database\Driver\mysql',
+  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 );
 $settings['config_sync_directory'] = 'sites/default/files/config_ANPngiUY4_0GL64D0UmRxEA_0GJl_GFkSXN-yVA9YVoaRF-QmY6N7e4cjLBTOHUOaxLUe4Klxw/sync';
+
+// Development settings - Disable cache for development
+$settings['cache']['bins']['render'] = 'cache.backend.memory';
+$settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.memory';
+$settings['cache']['bins']['page'] = 'cache.backend.memory';
+$settings['cache']['default'] = 'cache.backend.memory';
+
+// Disable CSS and JS aggregation for development
+$config['system.performance']['css']['preprocess'] = FALSE;
+$config['system.performance']['js']['preprocess'] = FALSE;
+
+// Enable verbose error messages
+$config['system.logging']['error_level'] = 'verbose';

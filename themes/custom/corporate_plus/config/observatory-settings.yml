@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  theme:
+    - corporate_plus
+id: corporate_plus.observatory_settings
+theme: corporate_plus
+name: 'Observatorio de Cambio Climático'
+info:
+  name: 'Observatorio de Cambio Climático'
+  description: 'Configuración específica para el Observatorio de Cambio Climático'
+  type: theme
+  core_version_requirement: ^9 || ^10
+  base theme: bootstrap_barrio
+  regions:
+    logo: 'Logo'
+    primary_menu: 'Primary menu'
+    language_block: 'Language'
+    search: 'Search'
+    hamburger_menu: 'Hamburger Menu'
+    highlighted: 'Highlighted'
+    featured_top: 'Featured top'
+    banner: 'Banner'
+    content: 'Content'
+    sidebar_first: 'Sidebar first'
+    sidebar_second: 'Sidebar second'
+    footer_top: 'Footer Top'
+    footer_first: 'Footer first'
+    footer_second: 'Footer second'
+    footer_third: 'Footer third'
+    footer_fourth: 'Footer fourth'
+    footer_fifth: 'Footer fifth'
+  libraries:
+    - corporate_plus/bootstrap
+    - corporate_plus/global-styling
+  libraries-override:
+    bootstrap_barrio/global-styling:
+      css:
+        component:
+          css/components/table.css: false
+          css/components/webform.css: false
+    bootstrap_barrio/messages_white:
+      css:
+        component:
+          css/colors/messages/messages-white.css: false 

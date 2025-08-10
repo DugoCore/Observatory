@@ -1,0 +1,123 @@
+{#
+/**
+ * @file
+ * Componente reutilizable para el panel de filtros.
+ */
+#}
+
+<div class="filter-panel">
+  <h3 class="filter-title">
+    <i class="fas fa-filter"></i>
+    Filtro
+  </h3>
+  
+  <div class="filter-group">
+    <label class="filter-label">Filtrar por año</label>
+    <div class="date-inputs">
+      <div class="date-input">
+        <input type="text" class="filter-input" placeholder="Desde" readonly>
+        <i class="fas fa-calendar"></i>
+      </div>
+      <div class="date-input">
+        <input type="text" class="filter-input" placeholder="Hasta" readonly>
+        <i class="fas fa-calendar"></i>
+      </div>
+    </div>
+  </div>
+  
+  <div class="filter-group">
+    <label class="filter-label">Filtrar tipo de emisión</label>
+    <select class="filter-input">
+      <option value="">Seleccionar tipo</option>
+      <option value="co2">CO2</option>
+      <option value="ch4">CH4</option>
+      <option value="n2o">N2O</option>
+      <option value="otros">Otros gases</option>
+    </select>
+  </div>
+</div>
+
+<style>
+/* Panel de filtros */
+.filter-panel {
+  background: white !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  height: fit-content !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e9ecef !important;
+}
+
+.filter-title {
+  color: #1e3a8a !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.filter-title i {
+  color: #666 !important;
+}
+
+.filter-group {
+  margin-bottom: 1.5rem !important;
+}
+
+.filter-label {
+  color: #333 !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+  display: block !important;
+}
+
+.filter-input {
+  width: 100% !important;
+  padding: 0.75rem !important;
+  border: 1px solid #ddd !important;
+  border-radius: 6px !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cabin', sans-serif !important;
+  background: white !important;
+  outline: none !important;
+  transition: border-color 0.3s ease !important;
+}
+
+.filter-input:focus {
+  border-color: #1e3a8a !important;
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.1) !important;
+}
+
+.date-inputs {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.5rem !important;
+}
+
+.date-input {
+  position: relative !important;
+}
+
+.date-input input {
+  padding-right: 2.5rem !important;
+}
+
+.date-input i {
+  position: absolute !important;
+  right: 0.75rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #666 !important;
+  pointer-events: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .date-inputs {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style> 

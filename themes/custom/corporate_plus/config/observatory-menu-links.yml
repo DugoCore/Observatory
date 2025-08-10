@@ -1,0 +1,26 @@
+observatory_menu_links:
+  inicio:
+    title: 'Inicio'
+    url: '/'
+    weight: 0
+    menu_name: main
+  oportunidades:
+    title: 'Oportunidades'
+    url: '/oportunidades'
+    weight: 1
+    menu_name: main
+  datos:
+    title: 'Acceso a datos'
+    url: '/datos'
+    weight: 2
+    menu_name: main
+  tematicas:
+    title: 'Temáticas'
+    url: '/tematicas'
+    weight: 3
+    menu_name: main
+  acerca:
+    title: 'Acerca de'
+    url: '/acerca-de'
+    weight: 4
+    menu_name: main 

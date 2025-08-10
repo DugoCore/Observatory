@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.observatory_news.field_news_description
+    - field.field.node.observatory_news.field_news_image
+    - node.type.observatory_news
+id: node.observatory_news.default
+targetEntityType: node
+bundle: observatory_news
+mode: default
+content:
+  field_news_description:
+    type: text_textarea_with_summary
+    weight: 2
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_news_image:
+    type: image_image
+    weight: 1
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+      alt_field: true
+      alt_field_required: true
+      title_field: false
+      title_field_required: false
+      default_image: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

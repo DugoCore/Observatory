@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+id: system.menu.main
+label: 'Menú principal'
+description: 'Menú principal del Observatorio de Cambio Climático'
+locked: false
+weight: 0
+menu_name: main 

@@ -9,6 +9,7 @@ dependencies:
 libraries:
   - corporate_plus/bootstrap
   - corporate_plus/global-styling
+  - corporate_plus/components
 
 regions:
   logo: 'Logo'
@@ -19,6 +20,8 @@ regions:
   highlighted: 'Highlighted'
   featured_top: 'Featured top'
   banner: 'Banner'
+  hero_section: 'Hero Section'
+  header_logo: 'Header Logo'
   content: 'Content'
   sidebar_first: 'Sidebar first'
   sidebar_second: 'Sidebar second'
