@@ -1,0 +1,4 @@
+services:
+  inventario_documentos.service:
+    class: Drupal\inventario_documentos\InventarioDocumentosService
+    arguments: ['@entity_type.manager']

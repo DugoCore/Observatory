@@ -17,7 +17,4 @@ logo_image:
   height: null
 logo_alt_text:
   value: 'Logo del Observatorio'
-changed: 1640995200
-default_langcode: true
-content_translation_source: und
-content_translation_outdated: false 
+changed: 1640995200 

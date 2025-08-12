@@ -1,0 +1,8 @@
+name: 'Inventario Documentos'
+type: module
+description: 'Maneja los documentos del inventario de emisiones'
+package: 'Observatory'
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:node
+  - drupal:file

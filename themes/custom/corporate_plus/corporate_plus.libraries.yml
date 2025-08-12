@@ -12,6 +12,8 @@ global-styling:
     js/packery-mode.pkgd.js: {}
     js/global.js: {}
     js/components.js: {}
+    js/observatory-dropdown.js: {}
+    js/login.js: {}
   css:
     component:
       css/font-awesome/css/all.css: {}

@@ -1,0 +1,10 @@
+{
+    "name": "drupal/inventario_documentos",
+    "type": "drupal-module",
+    "description": "Maneja los documentos del inventario de emisiones",
+    "autoload": {
+        "psr-4": {
+            "Drupal\\inventario_documentos\\": "src/"
+        }
+    }
+}

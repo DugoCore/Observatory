@@ -1,0 +1,15 @@
+test_module:
+  path: '/test-module'
+  defaults:
+    _controller: '\Drupal\inventario_documentos\Controller\TestController::test'
+    _title: 'Test Module'
+  requirements:
+    _permission: 'access content'
+
+inventario_emisiones:
+  path: '/inventario-emisiones'
+  defaults:
+    _controller: '\Drupal\inventario_documentos\Controller\InventarioEmisionesController::content'
+    _title: 'Inventario de Emisiones'
+  requirements:
+    _permission: 'access content'

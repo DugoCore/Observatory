@@ -29,6 +29,9 @@ function corporate_plus_theme() {
     ],
     'page__inventario_emisiones' => [
       'template' => 'page/page--inventario-emisiones',
+      'variables' => [
+        'documentos' => [],
+      ],
     ],
     'page__casos_estudio' => [
       'template' => 'page/page--casos-estudio',

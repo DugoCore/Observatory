@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Inventario Documentos module.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function inventario_documentos_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.inventario_documentos':
+      return '<p>' . t('Este módulo maneja los documentos del inventario de emisiones.') . '</p>';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function inventario_documentos_theme() {
+  return [
+    'inventario_documentos_page' => [
+      'variables' => [
+        'documentos' => [],
+      ],
+      'path' => \Drupal::service('extension.list.module')->getPath('inventario_documentos') . '/templates',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_modules_enabled().
+ */
+function inventario_documentos_modules_enabled($modules) {
+  if (in_array('inventario_documentos', $modules)) {
+    // Crear el tipo de contenido si no existe
+    $content_type_manager = \Drupal::entityTypeManager()->getStorage('node_type');
+    
+    // Verificar si ya existe el tipo de contenido
+    if (!$content_type_manager->load('documento_de_inventario')) {
+      // Crear el tipo de contenido
+      $content_type = $content_type_manager->create([
+        'type' => 'documento_de_inventario',
+        'name' => 'Documento de Inventario',
+        'description' => 'Documentos del inventario de emisiones',
+      ]);
+      $content_type->save();
+      
+      // Crear el campo de archivo
+      $field_storage = \Drupal::entityTypeManager()->getStorage('field_storage_config')->create([
+        'field_name' => 'field_archivo_del_documento',
+        'entity_type' => 'node',
+        'type' => 'file',
+        'settings' => [
+          'target_type' => 'file',
+          'display_field' => TRUE,
+          'display_default' => FALSE,
+          'uri_scheme' => 'public',
+        ],
+      ]);
+      $field_storage->save();
+      
+      // Crear la instancia del campo
+      $field_instance = \Drupal::entityTypeManager()->getStorage('field_config')->create([
+        'field_name' => 'field_archivo_del_documento',
+        'entity_type' => 'node',
+        'bundle' => 'documento_de_inventario',
+        'label' => 'Archivo del Documento',
+        'settings' => [
+          'file_extensions' => 'pdf doc docx xls xlsx ppt pptx txt rtf odt ods odp',
+          'file_directory' => 'inventario-documentos/[date:custom:Y]-[date:custom:m]',
+        ],
+      ]);
+      $field_instance->save();
+      
+      \Drupal::messenger()->addStatus('Tipo de contenido "Documento de Inventario" creado exitosamente.');
+    }
+  }
+}

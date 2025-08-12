@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Template for the Inventario Documentos page.
+ */
+#}
+
+<div class="inventario-documentos-page">
+  <h1>Inventario de Emisiones - Test</h1>
+  
+  <!-- Debug: {{ documentos|length }} documentos encontrados -->
+  <!-- Debug: Documentos disponibles: {{ documentos|json_encode }} -->
+  <!-- Debug: Tipo de variable: {{ documentos is empty ? 'empty' : 'not empty' }} -->
+  <!-- Debug: Es array: {{ documentos is iterable ? 'yes' : 'no' }} -->
+  
+  {% if documentos and documentos|length > 0 %}
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre del Documento</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for documento in documentos %}
+          <tr>
+            <td>{{ documento.title }}</td>
+            <td>{{ documento.date }}</td>
+            <td>
+              <a href="/sites/default/files/{{ documento.file }}"
+                 class="download-btn"
+                 download="{{ documento.file }}">
+                <i class="fas fa-download"></i>
+                Descargar
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No hay documentos disponibles.</p>
+  {% endif %}
+</div>

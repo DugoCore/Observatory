@@ -1,0 +1,26 @@
+uuid: 12345678-1234-1234-1234-123456789ac0
+langcode: es
+status: true
+dependencies: {  }
+id: 5
+revision_id: 5
+type: menu_link_content
+bundle: menu_link_content
+revision_translation_affected: true
+default_langcode: true
+content_translation_source: und
+content_translation_outdated: false
+title: 'Oportunidades'
+description: ''
+menu_name: main
+link:
+  uri: 'internal:/oportunidades'
+  title: ''
+  options: {  }
+external: false
+rediscover: false
+weight: 1
+expanded: false
+enabled: true
+parent: ''
+changed: 1640995200

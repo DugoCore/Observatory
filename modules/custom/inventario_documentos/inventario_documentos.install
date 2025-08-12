@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Inventario Documentos module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function inventario_documentos_install() {
+  \Drupal::messenger()->addStatus('Módulo Inventario Documentos instalado exitosamente.');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function inventario_documentos_uninstall() {
+  // Eliminar el tipo de contenido si existe
+  $content_type_manager = \Drupal::entityTypeManager()->getStorage('node_type');
+  $content_type = $content_type_manager->load('documento_de_inventario');
+  
+  if ($content_type) {
+    $content_type->delete();
+    \Drupal::messenger()->addStatus('Tipo de contenido "Documento de Inventario" eliminado.');
+  }
+  
+  // Eliminar el campo de almacenamiento si existe
+  $field_storage_manager = \Drupal::entityTypeManager()->getStorage('field_storage_config');
+  $field_storage = $field_storage_manager->load('node.field_archivo_del_documento');
+  
+  if ($field_storage) {
+    $field_storage->delete();
+    \Drupal::messenger()->addStatus('Campo "field_archivo_del_documento" eliminado.');
+  }
+}

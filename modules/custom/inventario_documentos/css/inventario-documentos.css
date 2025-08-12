@@ -1,0 +1,273 @@
+/**
+ * Estilos para la tabla de documentos del inventario
+ */
+
+.inventario-documentos-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.inventario-documentos-table th {
+  background: #2c5aa0;
+  color: white;
+  padding: 15px 20px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Asegurar que el tercer encabezado esté centrado */
+.inventario-documentos-table th:nth-child(3) {
+  text-align: center !important;
+}
+
+.inventario-documentos-table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+.inventario-documentos-table tr:hover {
+  background-color: #f8f9fa;
+  transition: background-color 0.2s ease;
+}
+
+/* Estilos para el título del documento */
+.document-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.document-title strong {
+  color: #2c5aa0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.document-filename {
+  color: #6c757d;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Estilos para la fecha */
+.document-date {
+  color: #495057;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Estilos para el botón de descarga */
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: auto;
+}
+
+.download-btn:hover {
+  background: #218838;
+  color: white;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.download-btn i {
+  font-size: 10px;
+}
+
+/* Alineación de columnas */
+.inventario-documentos-table th:nth-child(1),
+.inventario-documentos-table td:nth-child(1) {
+  width: 50%;
+  text-align: left;
+}
+
+.inventario-documentos-table th:nth-child(2),
+.inventario-documentos-table td:nth-child(2) {
+  width: 20%;
+  text-align: center;
+}
+
+.inventario-documentos-table th:nth-child(3),
+.inventario-documentos-table td:nth-child(3) {
+  width: 30%;
+  text-align: center;
+}
+
+/* Alineación vertical de contenido */
+.inventario-documentos-table td {
+  vertical-align: middle;
+  padding: 12px 15px;
+}
+
+/* Centrar el contenido de la columna de fecha */
+.inventario-documentos-table td:nth-child(2) .document-date {
+  display: block;
+  text-align: center;
+}
+
+/* Centrar el botón de descarga */
+.inventario-documentos-table td:nth-child(3) {
+  text-align: center;
+}
+
+.inventario-documentos-table td:nth-child(3) .download-btn {
+  margin: 0 auto;
+}
+
+/* Alinear el encabezado "Acciones" con el botón */
+.inventario-documentos-table th:nth-child(3) {
+  text-align: center !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Mensaje cuando no hay documentos */
+.no-documents {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+  font-size: 16px;
+  font-style: italic;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .inventario-documentos-table {
+    font-size: 14px;
+  }
+  
+  .inventario-documentos-table th,
+  .inventario-documentos-table td {
+    padding: 10px 15px;
+  }
+  
+  .document-title strong {
+    font-size: 14px;
+  }
+  
+  .download-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Animación de entrada */
+.inventario-documentos-table {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estados interactivos JavaScript */
+.inventario-documentos-table tr.hover-active {
+  background-color: #e3f2fd !important;
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}
+
+.inventario-documentos-table tr.selected {
+  background-color: #fff3cd !important;
+  border-left: 4px solid #ffc107;
+}
+
+.download-btn.btn-hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(40, 167, 69, 0.4);
+}
+
+/* Mejoras visuales adicionales */
+.inventario-documentos-table tr {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.inventario-documentos-table tr:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para dispositivos móviles mejorados */
+@media (max-width: 768px) {
+  .inventario-documentos-table {
+    font-size: 14px;
+    margin: 10px 0;
+  }
+  
+  .inventario-documentos-table th,
+  .inventario-documentos-table td {
+    padding: 10px 15px;
+  }
+  
+  .document-title strong {
+    font-size: 14px;
+  }
+  
+  .download-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    width: auto;
+    justify-content: center;
+  }
+  
+  .inventario-documentos-table tr:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* Ajustar anchos en móviles */
+  .inventario-documentos-table th:nth-child(1),
+  .inventario-documentos-table td:nth-child(1) {
+    width: 40%;
+  }
+  
+  .inventario-documentos-table th:nth-child(2),
+  .inventario-documentos-table td:nth-child(2) {
+    width: 25%;
+  }
+  
+  .inventario-documentos-table th:nth-child(3),
+  .inventario-documentos-table td:nth-child(3) {
+    width: 35%;
+  }
+  
+  /* Mantener alineación del encabezado en móviles */
+  .inventario-documentos-table th:nth-child(3) {
+    text-align: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}

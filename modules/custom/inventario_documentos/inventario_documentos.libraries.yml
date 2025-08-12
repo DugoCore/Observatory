@@ -1,0 +1,7 @@
+inventario_documentos:
+  version: 1.x
+  css:
+    theme:
+      css/inventario-documentos.css: {}
+  js:
+    js/inventario-documentos.js: {}
