@@ -1,0 +1,74 @@
+CASO 1: ANÁLISIS ESTADÍSTICO DE EMPLEADOS,,,,,,,,
+Código,Apellidos,Nombres,Área,Fecha Ingreso,Cargo,Género,Sueldo,
+E14078,De la Cruz Díaz,Rocío,GDH,2/2/1900,Analista,Femenino,1335,
+G45222,Arcayo Guzmán,Dana,GDH,11/11/1999,Analista,Femenino,1440,
+D21111,Huamansupa López,Jennifer,GDH,24/5/1998,Coordinador,Femenino,1877,
+E12565,Quispe Ramos,Estrella,OS,18/12/2010,Gerente,Femenino,4500,
+C12111,Quiroz Vega,Quiroz Vega,MK,11/11/1991,Coordinador,Masculino,1755,
+F12434,Quiroz Vega,Quiroz Vega,LOG,18/10/2013,Coordinador,Femenino,2000,
+E14079,Quiroz Vega,Quiroz Vega,TI,18/12/1994,Programador,Femenino,3093,
+E14080,Quiroz Vega,Quiroz Vega,GDH,23/3/1996,Gerente,Femenino,2231,
+E14081,Quiroz Vega,Quiroz Vega,TI,3/4/1995,Gerente,Femenino,3894,
+E14082,Quiroz Vega,Quiroz Vega,OS,18/10/1993,Coordinador,Femenino,1907,
+D15017,Quiroz Vega,Quiroz Vega,OS,24/5/1998,Coordinador,Femenino,1155,
+D15018,Quiroz Vega,Quiroz Vega,MK,19/9/1990,Director,Femenino,3410,
+D15019,Quiroz Vega,Quiroz Vega,TI,11/11/1991,Coordinador,Femenino,2561,
+C18542,Quiroz Vega,Quiroz Vega,LOG,30/10/1992,Gerente,Masculino,2257,
+,,,,,,,,
+FUNCIONES ESTADÍSTICAS Y MATEMÁTICAS:,,,,,,,,
+Función,Descripción,Fórmula,Resultado,Comentario,,,
+Promedio Sueldo,Promedio de todos los sueldos,=PROMEDIO(H2:H15),2315.29,Media aritmética,,,
+Sueldo Máximo,Sueldo más alto,=MAX(H2:H15),4500,Valor máximo,,,
+Sueldo Mínimo,Sueldo más bajo,=MIN(H2:H15),1155,Valor mínimo,,,
+Mediana Sueldo,Valor central de sueldos,=MEDIANA(H2:H15),2129,Valor del medio,,,
+Desviación Estándar,Dispersión de sueldos,=DESVEST(H2:H15),1051.23,Variabilidad,,,
+Varianza,Varianza de sueldos,=VAR(H2:H15),1105084,Variabilidad al cuadrado,,,
+Contar Empleados,Total de empleados,=CONTAR(H2:H15),14,Cantidad total,,,
+Contar por Género,Empleados masculinos,=CONTAR.SI(G2:G15;"Masculino"),2,Conteo condicional,,,
+Contar por Área GDH,Empleados en GDH,=CONTAR.SI(D2:D15;"GDH"),3,Por área específica,,,
+Suma Total Sueldos,Suma de todos los sueldos,=SUMA(H2:H15),32414,Total a pagar,,,
+,,,,,,,,
+CASO 2: BONIFICACIONES Y DESCUENTOS,,,,,,,,
+Código,Apellidos,Nombres,Sueldo Base,Años Servicio,Código Generado,Bonificación,Descuento,Sueldo Final
+E14078,De la Cruz Díaz,Rocío,1335,125,=IZQUIERDA(A30;1)&DERECHA(B30;4),=SI(E30>20;D30*0.15;D30*0.1),=SI(D30>3000;D30*0.05;0),=D30+F30-G30
+G45222,Arcayo Guzmán,Dana,1440,26,=IZQUIERDA(A31;1)&DERECHA(B31;4),=SI(E31>20;D31*0.15;D31*0.1),=SI(D31>3000;D31*0.05;0),=D31+F31-G31
+D21111,Huamansupa López,Jennifer,1877,27,=IZQUIERDA(A32;1)&DERECHA(B32;4),=SI(E32>20;D32*0.15;D32*0.1),=SI(D32>3000;D32*0.05;0),=D32+F32-G32
+E12565,Quispe Ramos,Estrella,4500,15,=IZQUIERDA(A33;1)&DERECHA(B33;4),=SI(E33>20;D33*0.15;D33*0.1),=SI(D33>3000;D33*0.05;0),=D33+F33-G33
+C12111,Quiroz Vega,Quiroz Vega,1755,34,=IZQUIERDA(A34;1)&DERECHA(B34;4),=SI(E34>20;D34*0.15;D34*0.1),=SI(D34>3000;D34*0.05;0),=D34+F34-G34
+F12434,Quiroz Vega,Quiroz Vega,2000,12,=IZQUIERDA(A35;1)&DERECHA(B35;4),=SI(E35>20;D35*0.15;D35*0.1),=SI(D35>3000;D35*0.05;0),=D35+F35-G35
+E14079,Quiroz Vega,Quiroz Vega,3093,31,=IZQUIERDA(A36;1)&DERECHA(B36;4),=SI(E36>20;D36*0.15;D36*0.1),=SI(D36>3000;D36*0.05;0),=D36+F36-G36
+E14080,Quiroz Vega,Quiroz Vega,2231,29,=IZQUIERDA(A37;1)&DERECHA(B37;4),=SI(E37>20;D37*0.15;D37*0.1),=SI(D37>3000;D37*0.05;0),=D37+F37-G37
+E14081,Quiroz Vega,Quiroz Vega,3894,30,=IZQUIERDA(A38;1)&DERECHA(B38;4),=SI(E38>20;D38*0.15;D38*0.1),=SI(D38>3000;D38*0.05;0),=D38+F38-G38
+E14082,Quiroz Vega,Quiroz Vega,1907,32,=IZQUIERDA(A39;1)&DERECHA(B39;4),=SI(E39>20;D39*0.15;D39*0.1),=SI(D39>3000;D39*0.05;0),=D39+F39-G39
+D15017,Quiroz Vega,Quiroz Vega,1155,27,=IZQUIERDA(A40;1)&DERECHA(B40;4),=SI(E40>20;D40*0.15;D40*0.1),=SI(D40>3000;D40*0.05;0),=D40+F40-G40
+D15018,Quiroz Vega,Quiroz Vega,3410,35,=IZQUIERDA(A41;1)&DERECHA(B41;4),=SI(E41>20;D41*0.15;D41*0.1),=SI(D41>3000;D41*0.05;0),=D41+F41-G41
+D15019,Quiroz Vega,Quiroz Vega,2561,34,=IZQUIERDA(A42;1)&DERECHA(B42;4),=SI(E42>20;D42*0.15;D42*0.1),=SI(D42>3000;D42*0.05;0),=D42+F42-G42
+C18542,Quiroz Vega,Quiroz Vega,2257,33,=IZQUIERDA(A43;1)&DERECHA(B43;4),=SI(E43>20;D43*0.15;D43*0.1),=SI(D43>3000;D43*0.05;0),=D43+F43-G43
+,,,,,,,,
+EXPLICACIÓN DE FÓRMULAS CASO 2:,,,,,,,,
+Código Generado:,Combina primera letra del código + últimos 4 caracteres del apellido,,,,,,,
+Bonificación:,"Si años > 20, bono 15%; sino 10% del sueldo base",,,,,,,
+Descuento:,"Si sueldo > 3000, descuento 5%; sino 0",,,,,,,
+Sueldo Final:,Sueldo Base + Bonificación - Descuento,,,,,,,
+,,,,,,,,
+CASO 3: TABLA DE PRODUCCIÓN Y BÚSQUEDAS HORIZONTALES,,,,,,,,
+Producto,Norte,Centro,Sur,Promedio,Código,Búsqueda Norte,Búsqueda Centro,Búsqueda Sur
+Papa,2892,3063,2892,=PROMEDIO(B54:D54),P001,=BUSCARH("Norte";B53:D53;2;FALSO),=BUSCARH("Centro";B53:D53;2;FALSO),=BUSCARH("Sur";B53:D53;2;FALSO)
+Camote,44527,40544,17488,=PROMEDIO(B55:D55),P002,=BUSCARH("Norte";B53:D53;3;FALSO),=BUSCARH("Centro";B53:D53;3;FALSO),=BUSCARH("Sur";B53:D53;3;FALSO)
+Yuca,12652,28951,29201,=PROMEDIO(B56:D56),P003,=BUSCARH("Norte";B53:D53;4;FALSO),=BUSCARH("Centro";B53:D53;4;FALSO),=BUSCARH("Sur";B53:D53;4;FALSO)
+Maíz,2794,5516,29950,=PROMEDIO(B57:D57),P004,=BUSCARH("Norte";B53:D53;5;FALSO),=BUSCARH("Centro";B53:D53;5;FALSO),=BUSCARH("Sur";B53:D53;5;FALSO)
+Lechuga,1725,12745,0,=PROMEDIO(B58:D58),P005,=BUSCARH("Norte";B53:D53;6;FALSO),=BUSCARH("Centro";B53:D53;6;FALSO),=BUSCARH("Sur";B53:D53;6;FALSO)
+Beterraga,35650,23737,6795,=PROMEDIO(B59:D59),P006,=BUSCARH("Norte";B53:D53;7;FALSO),=BUSCARH("Centro";B53:D53;7;FALSO),=BUSCARH("Sur";B53:D53;7;FALSO)
+TOTAL,=SUMA(B54:B59),=SUMA(C54:C59),=SUMA(D54:D59),=PROMEDIO(E54:E59),,,,,
+PROMEDIO,=PROMEDIO(B54:B59),=PROMEDIO(C54:C59),=PROMEDIO(D54:D59),,,,,,
+,,,,,,,,
+BÚSQUEDAS ESPECÍFICAS POR CÓDIGO:,,,,,,,,
+Buscar Código:,P003,Resultado Norte:,=INDICE(B54:B59;COINCIDIR(B63;F54:F59;0)),Resultado Centro:,=INDICE(C54:C59;COINCIDIR(B63;F54:F59;0)),Resultado Sur:,=INDICE(D54:D59;COINCIDIR(B63;F54:F59;0))
+Buscar Código:,P001,Resultado Norte:,=INDICE(B54:B59;COINCIDIR(B64;F54:F59;0)),Resultado Centro:,=INDICE(C54:C59;COINCIDIR(B64;F54:F59;0)),Resultado Sur:,=INDICE(D54:D59;COINCIDIR(B64;F54:F59;0))
+Buscar Código:,P005,Resultado Norte:,=INDICE(B54:B59;COINCIDIR(B65;F54:F59;0)),Resultado Centro:,=INDICE(C54:C59;COINCIDIR(B65;F54:F59;0)),Resultado Sur:,=INDICE(D54:D59;COINCIDIR(B65;F54:F59;0))
+,,,,,,,,
+ANÁLISIS ADICIONAL:,,,,,,,,
+Producto con Mayor Producción Norte:,=INDICE(A54:A59;COINCIDIR(MAX(B54:B59);B54:B59;0)),Valor:,=MAX(B54:B59),,,,,
+Producto con Mayor Producción Centro:,=INDICE(A54:A59;COINCIDIR(MAX(C54:C59);C54:C59;0)),Valor:,=MAX(C54:C59),,,,,
+Producto con Mayor Producción Sur:,=INDICE(A54:A59;COINCIDIR(MAX(D54:D59);D54:D59;0)),Valor:,=MAX(D54:D59),,,,,
+Producto con Menor Producción Total:,=INDICE(A54:A59;COINCIDIR(MIN(E54:E59);E54:E59;0)),Promedio:,=MIN(E54:E59),,,,,
