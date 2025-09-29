@@ -1,75 +1,149 @@
-<img alt="Drupal Logo" src="https://www.drupal.org/files/Wordmark_blue_RGB.png" height="60px">
+# Calculadora de Velocidad
 
-Drupal is an open source content management platform supporting a variety of
-websites ranging from personal weblogs to large community-driven websites. For
-more information, visit the Drupal website, [Drupal.org][Drupal.org], and join
-the [Drupal community][Drupal community].
+## Descripción
+Este programa calcula la velocidad de un móvil considerando diferentes unidades de medida para el espacio (metros o kilómetros) y el tiempo (horas o segundos). El resultado se puede mostrar en km/h o m/s.
 
-## Contributing
+## Fórmulas Utilizadas
 
-Drupal is developed on [Drupal.org][Drupal.org], the home of the international
-Drupal community since 2001!
+### 1. Fórmula básica de velocidad:
+```
+v = d / t
+```
+Donde:
+- v = velocidad
+- d = distancia (espacio)
+- t = tiempo
 
-[Drupal.org][Drupal.org] hosts Drupal's [GitLab repository][GitLab repository],
-its [issue queue][issue queue], and its [documentation][documentation]. Before
-you start working on code, be sure to search the [issue queue][issue queue] and
-create an issue if your aren't able to find an existing issue.
+### 2. Fórmulas de conversión de unidades:
 
-Every issue on Drupal.org automatically creates a new community-accessible fork
-that you can contribute to. Learn more about the code contribution process on
-the [Issue forks & merge requests page][issue forks].
+**Para convertir metros a kilómetros:**
+```
+km = m / 1000
+```
 
-## Usage
+**Para convertir kilómetros a metros:**
+```
+m = km × 1000
+```
 
-For a brief introduction, see [USAGE.txt](/core/USAGE.txt). You can also find
-guides, API references, and more by visiting Drupal's [documentation
-page][documentation].
+**Para convertir segundos a horas:**
+```
+h = s / 3600
+```
 
-You can quickly extend Drupal's core feature set by installing any of its
-[thousands of free and open source modules][modules]. With Drupal and its
-module ecosystem, you can often build most or all of what your project needs
-before writing a single line of code.
+**Para convertir horas a segundos:**
+```
+s = h × 3600
+```
 
-## Changelog
+**Para convertir m/s a km/h:**
+```
+km/h = (m/s) × 3.6
+```
 
-Drupal keeps detailed [change records][changelog]. You can search Drupal's
-changes for a record of every notable breaking change and new feature since
-2011.
+**Para convertir km/h a m/s:**
+```
+m/s = (km/h) / 3.6
+```
 
-## Security
+## Datos Necesarios
 
-For a list of security announcements, see the [Security advisories
-page][Security advisories] (available as [an RSS feed][security RSS]). This
-page also describes how to subscribe to these announcements via email.
+1. **Distancia/Espacio (d):**
+   - Valor numérico positivo
+   - Unidad: metros (m) o kilómetros (km)
 
-For information about the Drupal security process, or to find out how to report
-a potential security issue to the Drupal security team, see the [Security team
-page][security team].
+2. **Tiempo (t):**
+   - Valor numérico positivo
+   - Unidad: segundos (s) u horas (h)
 
-## Need a helping hand?
+3. **Unidad de salida deseada:**
+   - km/h (kilómetros por hora)
+   - m/s (metros por segundo)
 
-Visit the [Support page][support] or browse [over a thousand Drupal
-providers][service providers] offering design, strategy, development, and
-hosting services.
+## Algoritmo
 
-## Legal matters
+```
+ALGORITMO CalcularVelocidad
 
-Know your rights when using Drupal by reading Drupal core's
-[license](/core/LICENSE.txt).
+INICIO
+    // Entrada de datos
+    ESCRIBIR "Ingrese la distancia:"
+    LEER distancia
+    ESCRIBIR "Ingrese la unidad de distancia (m/km):"
+    LEER unidad_distancia
+    ESCRIBIR "Ingrese el tiempo:"
+    LEER tiempo
+    ESCRIBIR "Ingrese la unidad de tiempo (s/h):"
+    LEER unidad_tiempo
+    ESCRIBIR "Ingrese la unidad de salida deseada (m/s o km/h):"
+    LEER unidad_salida
+    
+    // Conversión a unidades base (metros y segundos)
+    SI unidad_distancia = "km" ENTONCES
+        distancia_metros = distancia * 1000
+    SINO
+        distancia_metros = distancia
+    FIN_SI
+    
+    SI unidad_tiempo = "h" ENTONCES
+        tiempo_segundos = tiempo * 3600
+    SINO
+        tiempo_segundos = tiempo
+    FIN_SI
+    
+    // Cálculo de velocidad en m/s
+    velocidad_ms = distancia_metros / tiempo_segundos
+    
+    // Conversión a la unidad de salida deseada
+    SI unidad_salida = "km/h" ENTONCES
+        velocidad_final = velocidad_ms * 3.6
+        ESCRIBIR "La velocidad es: ", velocidad_final, " km/h"
+    SINO
+        velocidad_final = velocidad_ms
+        ESCRIBIR "La velocidad es: ", velocidad_final, " m/s"
+    FIN_SI
+    
+FIN
+```
 
-Learn about the [Drupal trademark and logo policy here][trademark].
+## Uso del Programa
 
-[Drupal.org]: https://www.drupal.org
-[Drupal community]: https://www.drupal.org/community
-[GitLab repository]: https://git.drupalcode.org/project/drupal
-[issue queue]: https://www.drupal.org/project/issues/drupal
-[issue forks]: https://www.drupal.org/drupalorg/docs/gitlab-integration/issue-forks-merge-requests
-[documentation]: https://www.drupal.org/documentation
-[changelog]: https://www.drupal.org/list-changes/drupal
-[modules]: https://www.drupal.org/project/project_module
-[security advisories]: https://www.drupal.org/security
-[security RSS]: https://www.drupal.org/security/rss.xml
-[security team]: https://www.drupal.org/drupal-security-team
-[service providers]: https://www.drupal.org/drupal-services
-[support]: https://www.drupal.org/support
-[trademark]: https://www.drupal.com/trademark
+### Ejecutar el programa:
+```bash
+python3 calculadora_velocidad.py
+```
+
+### Menú principal:
+1. **Calcular velocidad**: Permite ingresar datos y calcular la velocidad
+2. **Ver ejemplos de uso**: Muestra ejemplos prácticos
+3. **Salir**: Termina el programa
+
+### Ejemplos de uso:
+
+#### Ejemplo 1: Auto en ciudad
+- **Datos**: 100 metros en 10 segundos
+- **Resultado**: 10 m/s = 36 km/h
+
+#### Ejemplo 2: Viaje en carretera
+- **Datos**: 50 kilómetros en 1 hora
+- **Resultado**: 13.89 m/s = 50 km/h
+
+#### Ejemplo 3: Caminata
+- **Datos**: 200 metros en 0.5 horas (30 minutos)
+- **Resultado**: 0.11 m/s = 0.40 km/h
+
+## Características del programa:
+
+- ✅ Validación de datos de entrada
+- ✅ Conversión automática entre unidades
+- ✅ Manejo de errores
+- ✅ Interfaz de menú interactiva
+- ✅ Ejemplos prácticos incluidos
+- ✅ Resultados en ambas unidades para referencia
+
+## Casos de uso:
+
+1. **Transporte**: Calcular velocidad de vehículos
+2. **Deportes**: Velocidad de corredores, ciclistas
+3. **Física**: Problemas de cinemática
+4. **Ingeniería**: Análisis de movimiento de objetos
