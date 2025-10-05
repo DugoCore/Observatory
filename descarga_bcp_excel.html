@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Descargar Estado de Cuenta BCP</title>
+    <meta charset="utf-8">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 600px; 
+            margin: 50px auto; 
+            padding: 20px; 
+            text-align: center; 
+            background: #f5f5f5;
+        }
+        .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+        }
+        button { 
+            background: #007acc; 
+            color: white; 
+            padding: 15px 30px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 18px; 
+            margin: 20px 0;
+        }
+        button:hover { background: #005a99; }
+        .info { color: #666; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Estado de Cuenta BCP</h1>
+        <h2>LATIN MOUNTAINS S.A.C</h2>
+        <div class="info">Período: 01/06/2025 - 30/06/2025</div>
+        <div class="info">Cuenta: SOL ES 215-9402248-0-17</div>
+        
+        <button onclick="descargarExcel()">
+            ⬇️ Descargar Excel Completo
+        </button>
+        
+        <div class="info">
+            <strong>Contenido del Excel:</strong><br>
+            • Información de cuenta<br>
+            • Resumen financiero<br>
+            • Transacciones detalladas<br>
+            • Formato profesional con colores
+        </div>
+    </div>
+
+    <script>
+    function descargarExcel() {
+        // Crear el archivo Excel programáticamente
+        const wb = {
+            SheetNames: ["Información", "Resumen", "Transacciones"],
+            Sheets: {}
+        };
+        
+        // Datos de la cuenta
+        const infoData = [
+            ["BCP BANK STATEMENT - INFORMACIÓN DE CUENTA"],
+            [""],
+            ["Banco:", "BCP"],
+            ["Tipo de Estado:", "ESTADO DE CUENTA CORRIENTE"],
+            ["Titular:", "LATIN MOUNTAINS S.A.C"],
+            ["Número de Cuenta:", "SOL ES 215-9402248-0-17"],
+            ["Período Desde:", "01/06/2025"],
+            ["Período Hasta:", "30/06/2025"],
+            ["Oficina:", "OFICINA SUC AREQUIPA"],
+            ["Teléfono:", "054-381000"],
+            ["Email:", "luceroportugal@bcp.com.pe"]
+        ];
+        
+        // Datos del resumen
+        const resumenData = [
+            ["RESUMEN DE CUENTA - JUNIO 2025"],
+            [""],
+            ["Saldo Anterior (01/06/2025):", 176550.46],
+            ["Depósitos - Efectivo:", 55100.40],
+            ["Depósitos - Otros:", 196772.62],
+            ["Retiros - Cheques:", 0.00],
+            ["Retiros - Otros:", 392313.48],
+            ["Intereses - Acreedores/Deudores:", 0.00],
+            ["Saldo Disponible (30/06/2025):", 36250.00],
+            ["Saldo Promedio Mes Anterior:", 176550.46]
+        ];
+        
+        // Datos de transacciones
+        const transaccionesData = [
+            ["HISTORIAL DE TRANSACCIONES"],
+            [""],
+            ["Fecha", "Descripción", "Monto", "Saldo"],
+            ["02-06", "TRANSF.STD5.TERC.BAC", -350.00, 175040.52],
+            ["02-06", "PAGO CON.EXP.YAPEBANK", -465.00, 175625.52],
+            ["02-06", "TRANSF.BCO.INTERBSAC", 1341.20, 163329.72],
+            ["03-06", "ABONO PLIN.TIFFANY ALAN", 140.00, 151044.86],
+            ["04-06", "ENTR.EFEC. A 215175", 10260.00, 201382.21],
+            ["05-06", "Pago YAPE de 21803", 10.00, 201392.71],
+            ["05-06", "Pago YAPE de 21899", 50.00, 201442.71],
+            ["06-06", "TRANSF.TALS.TERC.BAC", 700.00, 202382.71]
+        ];
+        
+        // Crear CSV simple para descargar
+        let csvContent = "ESTADO DE CUENTA BCP - LATIN MOUNTAINS S.A.C
+";
+        csvContent += "Período: 01/06/2025 - 30/06/2025
+";
+        csvContent += "Cuenta: SOL ES 215-9402248-0-17
+
+";
+        
+        csvContent += "RESUMEN DE CUENTA
+";
+        csvContent += "Concepto,Monto
+";
+        csvContent += "Saldo Anterior,176550.46
+";
+        csvContent += "Depósitos Efectivo,55100.40
+";
+        csvContent += "Depósitos Otros,196772.62
+";
+        csvContent += "Retiros,392313.48
+";
+        csvContent += "Saldo Final,36250.00
+
+";
+        
+        csvContent += "TRANSACCIONES
+";
+        csvContent += "Fecha,Descripción,Monto,Saldo
+";
+        csvContent += "02-06,TRANSF.STD5.TERC.BAC,-350.00,175040.52
+";
+        csvContent += "02-06,PAGO CON.EXP.YAPEBANK,-465.00,175625.52
+";
+        csvContent += "02-06,TRANSF.BCO.INTERBSAC,1341.20,163329.72
+";
+        csvContent += "03-06,ABONO PLIN.TIFFANY ALAN,140.00,151044.86
+";
+        csvContent += "04-06,ENTR.EFEC. A 215175,10260.00,201382.21
+";
+        csvContent += "05-06,Pago YAPE de 21803,10.00,201392.71
+";
+        csvContent += "05-06,Pago YAPE de 21899,50.00,201442.71
+";
+        csvContent += "06-06,TRANSF.TALS.TERC.BAC,700.00,202382.71
+";
+        
+        // Descargar como CSV (compatible con Excel)
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "BCP_Estado_Cuenta_LATIN_MOUNTAINS_Junio_2025.csv");
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        alert("✅ Archivo descargado como CSV (se puede abrir en Excel)
+
+📂 Busca: BCP_Estado_Cuenta_LATIN_MOUNTAINS_Junio_2025.csv
+📁 En tu carpeta de Descargas");
+    }
+    </script>
+</body>
+</html>
